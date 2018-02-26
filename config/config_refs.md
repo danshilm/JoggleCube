@@ -1,4 +1,4 @@
-This is the configuration file that will hold a list of the project deliverables listed in Section 2.1 of document SE QA.08 - Operating Procedures as per Section 2.2 of said document.
+This is the configuration file that will hold a list of the project deliverables listed in Section 2.1 of document [SE QA.08](../docs/qa-docs/seqa8-OperatingProcedures.pdf) - Operating Procedures as per Section 2.2 of said document.
 
 A simple table can be made in Markdown like this:
 
