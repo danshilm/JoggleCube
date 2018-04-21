@@ -47,11 +47,11 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <Component id="countdownIcon" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jTextField2" min="-2" pref="138" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                  <Component id="scoreIcon" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jTextField3" min="-2" pref="165" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
@@ -69,23 +69,23 @@
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jLabel1" max="32767" attributes="0"/>
+                          <Component id="countdownIcon" max="32767" attributes="0"/>
                           <Component id="jTextField2" max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
+                          <Component id="scoreIcon" alignment="0" max="32767" attributes="0"/>
                           <Component id="jTextField3" alignment="0" min="-2" pref="48" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="67" max="32767" attributes="0"/>
+                  <EmptySpace pref="78" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="countdownIcon">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/gameIcons/Programming-Watch-icon.png"/>
@@ -114,15 +114,15 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                              <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+                              <Component id="grid1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
+                                      <Component id="grid2" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
+                                      <Component id="grid3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="jButton3" min="-2" pref="123" max="-2" attributes="0"/>
+                                  <Component id="changeViewBtn" min="-2" pref="123" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -144,18 +144,18 @@
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="jButton3" min="-2" pref="40" max="-2" attributes="0"/>
+                                      <Component id="changeViewBtn" min="-2" pref="40" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
+                                      <Component id="grid3" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" attributes="0">
                                               <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
-                                              <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
+                                              <Component id="grid2" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="jPanel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="grid1" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="32767" attributes="0"/>
                                   </Group>
@@ -207,7 +207,7 @@
                 <Property name="text" type="java.lang.String" value="CORRECT WORDS"/>
               </Properties>
             </Component>
-            <Container class="javax.swing.JPanel" name="jPanel3">
+            <Container class="javax.swing.JPanel" name="grid1">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="dd" red="2d" type="rgb"/>
@@ -223,23 +223,23 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="g1R0C0" min="-2" pref="72" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="g1R0C4" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Component id="g1R0C1" min="-2" pref="72" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="g1R0C3" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Component id="g1R0C2" min="-2" pref="72" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="g1R0C5" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Component id="g1R1C0" min="-2" pref="72" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="g1R0C6" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Component id="g1R1C1" min="-2" pref="72" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="g1R0C7" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Component id="g1R1C2" min="-2" pref="72" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="g1R0C9" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Component id="g1R2C0" min="-2" pref="72" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="g1R0C8" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Component id="g1R2C1" min="-2" pref="72" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="g1R0C10" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Component id="g1R2C2" min="-2" pref="72" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -252,20 +252,20 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="g1R0C0" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
-                              <Component id="g1R0C4" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
-                              <Component id="g1R0C3" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
+                              <Component id="g1R0C1" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
+                              <Component id="g1R0C2" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="g1R0C5" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
-                              <Component id="g1R0C6" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
-                              <Component id="g1R0C7" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
+                              <Component id="g1R1C0" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
+                              <Component id="g1R1C1" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
+                              <Component id="g1R1C2" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="g1R0C9" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
-                              <Component id="g1R0C8" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
-                              <Component id="g1R0C10" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
+                              <Component id="g1R2C0" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
+                              <Component id="g1R2C1" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
+                              <Component id="g1R2C2" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -273,7 +273,7 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="g1R0C9">
+                <Component class="javax.swing.JButton" name="g1R2C0">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -282,15 +282,16 @@
                       <Font name="Agency FB" size="24" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="S"/>
+                    <Property name="name" type="java.lang.String" value="g1R2C0" noResource="true"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="g1R0C9handleTileAction"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="handleTileAction"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="playGame_jButton5"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="g1R0C10">
+                <Component class="javax.swing.JButton" name="g1R2C2">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -299,15 +300,16 @@
                       <Font name="Agency FB" size="24" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="W"/>
+                    <Property name="name" type="java.lang.String" value="g1R2C2" noResource="true"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="g1R0C10handleTileAction"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="handleTileAction"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="playGame_jButton5"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="g1R0C8">
+                <Component class="javax.swing.JButton" name="g1R2C1">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -316,15 +318,16 @@
                       <Font name="Agency FB" size="24" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="A"/>
+                    <Property name="name" type="java.lang.String" value="g1R2C1" noResource="true"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="g1R0C8handleTileAction"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="handleTileAction"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="playGame_jButton5"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="g1R0C6">
+                <Component class="javax.swing.JButton" name="g1R1C1">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -333,15 +336,16 @@
                       <Font name="Agency FB" size="24" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="D"/>
+                    <Property name="name" type="java.lang.String" value="g1R1C1" noResource="true"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="g1R0C6handleTileAction"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="handleTileAction"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="playGame_jButton5"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="g1R0C4">
+                <Component class="javax.swing.JButton" name="g1R0C1">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -350,15 +354,16 @@
                       <Font name="Agency FB" size="24" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Q"/>
+                    <Property name="name" type="java.lang.String" value="g1R0C1" noResource="true"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="g1R0C4handleTileAction"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="handleTileAction"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="playGame_jButton5"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="g1R0C7">
+                <Component class="javax.swing.JButton" name="g1R1C2">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -367,9 +372,10 @@
                       <Font name="Agency FB" size="24" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="M"/>
+                    <Property name="name" type="java.lang.String" value="g1R1C2" noResource="true"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="g1R0C7handleTileAction"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="handleTileAction"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="playGame_jButton5"/>
@@ -384,6 +390,7 @@
                       <Font name="Agency FB" size="24" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="A"/>
+                    <Property name="name" type="java.lang.String" value="g1R0C0" noResource="true"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="handleTileAction"/>
@@ -392,7 +399,7 @@
                     <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="playGame_jButton5"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="g1R0C3">
+                <Component class="javax.swing.JButton" name="g1R0C2">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -401,15 +408,16 @@
                       <Font name="Agency FB" size="24" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="W"/>
+                    <Property name="name" type="java.lang.String" value="g1R0C2" noResource="true"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="g1R0C3handleTileAction"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="handleTileAction"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="playGame_jButton5"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="g1R0C5">
+                <Component class="javax.swing.JButton" name="g1R1C0">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -418,9 +426,10 @@
                       <Font name="Agency FB" size="24" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="V"/>
+                    <Property name="name" type="java.lang.String" value="g1R1C0" noResource="true"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="g1R0C5handleTileAction"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="handleTileAction"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="playGame_jButton5"/>
@@ -428,7 +437,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="jPanel4">
+            <Container class="javax.swing.JPanel" name="grid2">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="dd" red="2d" type="rgb"/>
@@ -442,25 +451,25 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="g1R0C17" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Component id="g2R0C0" min="-2" pref="72" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="g1R0C15" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Component id="g2R0C1" min="-2" pref="72" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="g1R0C18" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Component id="g2R0C2" min="-2" pref="72" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="g1R0C19" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Component id="g2R1C0" min="-2" pref="72" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="g1R0C14" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Component id="g2R1C1" min="-2" pref="72" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="g1R0C16" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Component id="g2R1C2" min="-2" pref="72" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="g1R0C11" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Component id="g2R2C0" min="-2" pref="72" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="g1R0C13" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Component id="g2R2C1" min="-2" pref="72" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="g1R0C12" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Component id="g2R2C2" min="-2" pref="72" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -472,21 +481,21 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="g1R0C17" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
-                              <Component id="g1R0C15" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
-                              <Component id="g1R0C18" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
+                              <Component id="g2R0C0" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
+                              <Component id="g2R0C1" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
+                              <Component id="g2R0C2" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="g1R0C19" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
-                              <Component id="g1R0C14" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
-                              <Component id="g1R0C16" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
+                              <Component id="g2R1C0" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
+                              <Component id="g2R1C1" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
+                              <Component id="g2R1C2" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="g1R0C11" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
-                              <Component id="g1R0C13" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
-                              <Component id="g1R0C12" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
+                              <Component id="g2R2C0" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
+                              <Component id="g2R2C1" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
+                              <Component id="g2R2C2" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -494,7 +503,7 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="g1R0C11">
+                <Component class="javax.swing.JButton" name="g2R2C0">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -503,15 +512,16 @@
                       <Font name="Agency FB" size="24" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="T"/>
+                    <Property name="name" type="java.lang.String" value="g2R2C0" noResource="true"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="g1R0C11handleTileAction"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="handleTileAction"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="playGame_jButton5"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="g1R0C12">
+                <Component class="javax.swing.JButton" name="g2R2C2">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -520,15 +530,16 @@
                       <Font name="Agency FB" size="24" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="K"/>
+                    <Property name="name" type="java.lang.String" value="g2R2C2" noResource="true"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="g1R0C12handleTileAction"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="handleTileAction"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="playGame_jButton5"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="g1R0C13">
+                <Component class="javax.swing.JButton" name="g2R2C1">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -537,15 +548,16 @@
                       <Font name="Agency FB" size="24" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="A"/>
+                    <Property name="name" type="java.lang.String" value="g2R2C1" noResource="true"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="g1R0C13handleTileAction"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="handleTileAction"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="playGame_jButton5"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="g1R0C14">
+                <Component class="javax.swing.JButton" name="g2R1C1">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -554,15 +566,16 @@
                       <Font name="Agency FB" size="24" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="E"/>
+                    <Property name="name" type="java.lang.String" value="g2R1C1" noResource="true"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="g1R0C14handleTileAction"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="handleTileAction"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="playGame_jButton5"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="g1R0C15">
+                <Component class="javax.swing.JButton" name="g2R0C1">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -571,15 +584,16 @@
                       <Font name="Agency FB" size="24" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="A"/>
+                    <Property name="name" type="java.lang.String" value="g2R0C1" noResource="true"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="g1R0C15handleTileAction"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="handleTileAction"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="playGame_jButton5"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="g1R0C16">
+                <Component class="javax.swing.JButton" name="g2R1C2">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -588,15 +602,16 @@
                       <Font name="Agency FB" size="24" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="O"/>
+                    <Property name="name" type="java.lang.String" value="g2R1C2" noResource="true"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="g1R0C16handleTileAction"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="handleTileAction"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="playGame_jButton5"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="g1R0C17">
+                <Component class="javax.swing.JButton" name="g2R0C0">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -605,15 +620,16 @@
                       <Font name="Agency FB" size="24" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="B"/>
+                    <Property name="name" type="java.lang.String" value="g2R0C0" noResource="true"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="g1R0C17handleTileAction"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="handleTileAction"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="playGame_jButton5"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="g1R0C18">
+                <Component class="javax.swing.JButton" name="g2R0C2">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -622,15 +638,16 @@
                       <Font name="Agency FB" size="24" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="QQ"/>
+                    <Property name="name" type="java.lang.String" value="g2R0C2" noResource="true"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="g1R0C18handleTileAction"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="handleTileAction"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="playGame_jButton5"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="g1R0C19">
+                <Component class="javax.swing.JButton" name="g2R1C0">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -639,9 +656,10 @@
                       <Font name="Agency FB" size="24" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="E"/>
+                    <Property name="name" type="java.lang.String" value="g2R1C0" noResource="true"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="g1R0C19handleTileAction"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="handleTileAction"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="playGame_jButton5"/>
@@ -649,7 +667,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="jPanel5">
+            <Container class="javax.swing.JPanel" name="grid3">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="dd" red="2d" type="rgb"/>
@@ -663,25 +681,25 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="g1R0C26" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Component id="g3R0C0" min="-2" pref="72" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="g1R0C24" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Component id="g3R0C1" min="-2" pref="72" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="g1R0C27" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Component id="g3R0C2" min="-2" pref="72" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="g1R0C28" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Component id="g3R1C0" min="-2" pref="72" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="g1R0C23" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Component id="g3R1C1" min="-2" pref="72" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="g1R0C25" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Component id="g3R1C2" min="-2" pref="72" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="g1R0C20" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Component id="g3R2C0" min="-2" pref="72" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="g1R0C22" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Component id="g3R2C1" min="-2" pref="72" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="g1R0C21" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Component id="g3R2C2" min="-2" pref="72" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -693,21 +711,21 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="g1R0C26" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
-                              <Component id="g1R0C24" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
-                              <Component id="g1R0C27" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
+                              <Component id="g3R0C0" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
+                              <Component id="g3R0C1" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
+                              <Component id="g3R0C2" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="g1R0C28" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
-                              <Component id="g1R0C23" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
-                              <Component id="g1R0C25" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
+                              <Component id="g3R1C0" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
+                              <Component id="g3R1C1" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
+                              <Component id="g3R1C2" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="g1R0C20" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
-                              <Component id="g1R0C22" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
-                              <Component id="g1R0C21" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
+                              <Component id="g3R2C0" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
+                              <Component id="g3R2C1" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
+                              <Component id="g3R2C2" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -715,7 +733,7 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="g1R0C20">
+                <Component class="javax.swing.JButton" name="g3R2C0">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -724,15 +742,16 @@
                       <Font name="Agency FB" size="24" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="G"/>
+                    <Property name="name" type="java.lang.String" value="g3R2C0" noResource="true"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="g1R0C20handleTileAction"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="handleTileAction"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="playGame_jButton5"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="g1R0C21">
+                <Component class="javax.swing.JButton" name="g3R2C2">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -741,15 +760,16 @@
                       <Font name="Agency FB" size="24" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="W"/>
+                    <Property name="name" type="java.lang.String" value="g3R2C2" noResource="true"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="g1R0C21handleTileAction"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="handleTileAction"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="playGame_jButton5"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="g1R0C22">
+                <Component class="javax.swing.JButton" name="g3R2C1">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -758,15 +778,16 @@
                       <Font name="Agency FB" size="24" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="B"/>
+                    <Property name="name" type="java.lang.String" value="g3R2C1" noResource="true"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="g1R0C22handleTileAction"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="handleTileAction"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="playGame_jButton5"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="g1R0C23">
+                <Component class="javax.swing.JButton" name="g3R1C1">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -775,15 +796,16 @@
                       <Font name="Agency FB" size="24" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="M"/>
+                    <Property name="name" type="java.lang.String" value="g3R1C1" noResource="true"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="g1R0C23handleTileAction"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="handleTileAction"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="playGame_jButton5"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="g1R0C24">
+                <Component class="javax.swing.JButton" name="g3R0C1">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -792,15 +814,16 @@
                       <Font name="Agency FB" size="24" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="E"/>
+                    <Property name="name" type="java.lang.String" value="g3R0C1" noResource="true"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="g1R0C24handleTileAction"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="handleTileAction"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="playGame_jButton5"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="g1R0C25">
+                <Component class="javax.swing.JButton" name="g3R1C2">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -809,15 +832,16 @@
                       <Font name="Agency FB" size="24" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="A"/>
+                    <Property name="name" type="java.lang.String" value="g3R1C2" noResource="true"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="g1R0C25handleTileAction"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="handleTileAction"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="playGame_jButton5"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="g1R0C26">
+                <Component class="javax.swing.JButton" name="g3R0C0">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -826,15 +850,16 @@
                       <Font name="Agency FB" size="24" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="P"/>
+                    <Property name="name" type="java.lang.String" value="g3R0C0" noResource="true"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="g1R0C26handleTileAction"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="handleTileAction"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="playGame_jButton5"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="g1R0C27">
+                <Component class="javax.swing.JButton" name="g3R0C2">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -843,15 +868,16 @@
                       <Font name="Agency FB" size="24" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="A"/>
+                    <Property name="name" type="java.lang.String" value="g3R0C2" noResource="true"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="g1R0C27handleTileAction"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="handleTileAction"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="playGame_jButton5"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="g1R0C28">
+                <Component class="javax.swing.JButton" name="g3R1C0">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -860,9 +886,10 @@
                       <Font name="Agency FB" size="24" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="L"/>
+                    <Property name="name" type="java.lang.String" value="g3R1C0" noResource="true"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="g1R0C28handleTileAction"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="handleTileAction"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="playGame_jButton5"/>
@@ -882,11 +909,11 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextField1" min="-2" pref="429" max="-2" attributes="0"/>
+                          <Component id="currentWordField" min="-2" pref="429" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                          <Component id="jButton1" min="-2" pref="197" max="-2" attributes="0"/>
+                          <Component id="clearWordBtn" min="-2" pref="197" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jButton2" pref="194" max="32767" attributes="0"/>
+                          <Component id="addWordBtn" pref="194" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -895,9 +922,9 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jTextField1" max="32767" attributes="0"/>
-                              <Component id="jButton2" alignment="1" pref="63" max="32767" attributes="0"/>
-                              <Component id="jButton1" alignment="1" max="32767" attributes="0"/>
+                              <Component id="currentWordField" max="32767" attributes="0"/>
+                              <Component id="addWordBtn" alignment="1" pref="63" max="32767" attributes="0"/>
+                              <Component id="clearWordBtn" alignment="1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -905,7 +932,7 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="jButton1">
+                <Component class="javax.swing.JButton" name="clearWordBtn">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="24" style="0"/>
@@ -913,7 +940,7 @@
                     <Property name="text" type="java.lang.String" value="Clear Word"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton2">
+                <Component class="javax.swing.JButton" name="addWordBtn">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="24" style="0"/>
@@ -921,7 +948,7 @@
                     <Property name="text" type="java.lang.String" value="Add word"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField1">
+                <Component class="javax.swing.JTextField" name="currentWordField">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="24" style="1"/>
@@ -931,7 +958,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="jButton3">
+            <Component class="javax.swing.JButton" name="changeViewBtn">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Change View"/>
               </Properties>
@@ -945,7 +972,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
+        <Component class="javax.swing.JLabel" name="scoreIcon">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/gameIcons/favourites-star-SH-icon.png"/>
