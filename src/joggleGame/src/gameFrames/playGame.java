@@ -1,28 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gameFrames;
 
-import java.awt.Component;
-import java.util.ArrayList;
-import java.util.List;
 import raw.*;
 
 /**
- * 113 39
- * @author MY PC
+ * 
+ * @author Theophilus Elechi
+ * @version 2.0 (24th April 2018)
  */
 public class playGame extends javax.swing.JFrame {
-	
-//	private List<Component> grid1 = new ArrayList<>();
 
     /**
      * Creates new form playGame
      */
     public playGame() {
         initComponents();
+        populateGrids();
 		
     }
 
@@ -47,35 +39,36 @@ public class playGame extends javax.swing.JFrame {
         currentWordField = new javax.swing.JTextField();
         changeViewBtn = new javax.swing.JButton();
         grid1 = new raw.Grid();
-        g1R0C0 = new raw.Tile();
-        g1R0C1 = new raw.Tile();
-        g1R0C2 = new raw.Tile();
-        g1R1C2 = new raw.Tile();
-        g1R1C1 = new raw.Tile();
-        g1R1C0 = new raw.Tile();
-        g1R2C0 = new raw.Tile();
-        g1R2C1 = new raw.Tile();
-        g1R2C2 = new raw.Tile();
+        g1R0C0 = new raw.Tile(grid1, new PositionInGrid(0, 0));
+        g1R0C1 = new raw.Tile(grid1, new PositionInGrid(0, 1));
+        g1R0C2 = new raw.Tile(grid1, new PositionInGrid(0, 2));
+        g1R1C2 = new raw.Tile(grid1, new PositionInGrid(1, 2));
+        g1R1C1 = new raw.Tile(grid1, new PositionInGrid(1, 1));
+        g1R1C0 = new raw.Tile(grid1, new PositionInGrid(1, 0));
+        g1R2C0 = new raw.Tile(grid1, new PositionInGrid(2, 0));
+        g1R2C1 = new raw.Tile(grid1, new PositionInGrid(2, 1));
+        g1R2C2 = new raw.Tile(grid1, new PositionInGrid(2, 2));
         grid2 = new raw.Grid();
-        g2R0C0 = new raw.Tile();
-        g2R0C1 = new raw.Tile();
-        g2R0C2 = new raw.Tile();
-        g2R1C2 = new raw.Tile();
-        g2R1C1 = new raw.Tile();
-        g2R1C0 = new raw.Tile();
-        g2R2C0 = new raw.Tile();
-        g2R2C1 = new raw.Tile();
-        g2R2C2 = new raw.Tile();
+        g2R0C0 = new raw.Tile(grid2, new PositionInGrid(0, 0));
+        g2R0C1 = new raw.Tile(grid2, new PositionInGrid(0, 1));
+        g2R0C2 = new raw.Tile(grid2, new PositionInGrid(0, 2));
+        g2R1C2 = new raw.Tile(grid2, new PositionInGrid(1, 2));
+        g2R1C1 = new raw.Tile(grid2, new PositionInGrid(1, 1));
+        g2R1C0 = new raw.Tile(grid2, new PositionInGrid(1, 0));
+        g2R2C0 = new raw.Tile(grid2, new PositionInGrid(2, 0));
+        g2R2C1 = new raw.Tile(grid2, new PositionInGrid(2, 1));
+        g2R2C2 = new raw.Tile(grid2, new PositionInGrid(2, 2));
         grid3 = new raw.Grid();
-        g3R0C0 = new raw.Tile();
-        g3R0C1 = new raw.Tile();
-        g3R0C2 = new raw.Tile();
-        g3R1C2 = new raw.Tile();
-        g3R1C1 = new raw.Tile();
-        g3R1C0 = new raw.Tile();
-        g3R2C0 = new raw.Tile();
-        g3R2C1 = new raw.Tile();
-        g3R2C2 = new raw.Tile();
+        g3R0C0 = new raw.Tile(grid3, new PositionInGrid(0, 0));
+        g3R0C1 = new raw.Tile(grid3, new PositionInGrid(0, 1));
+        g3R0C2 = new raw.Tile(grid3, new PositionInGrid(0, 2));
+        g3R1C2 = new raw.Tile(grid3, new PositionInGrid(1, 2));
+        g3R1C1 = new raw.Tile(grid3, new PositionInGrid(1, 1));
+        g3R1C0 = new raw.Tile(grid3, new PositionInGrid(1, 0));
+        g3R2C0 = new raw.Tile(grid3, new PositionInGrid(2, 0));
+        g3R2C1 = new raw.Tile(grid3, new PositionInGrid(2, 1));
+        g3R2C2 = new raw.Tile(grid3, new PositionInGrid(2, 2));
+        warningLabel = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         scoreIcon = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
@@ -89,6 +82,7 @@ public class playGame extends javax.swing.JFrame {
         countdownIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gameIcons/Programming-Watch-icon.png"))); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(0, 204, 255));
+        jPanel2.setForeground(new java.awt.Color(255, 0, 0));
 
         jList1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
@@ -139,9 +133,11 @@ public class playGame extends javax.swing.JFrame {
         changeViewBtn.setText("Change View");
 
         grid1.setBackground(new java.awt.Color(45, 221, 255));
+        grid1.setGridNo(1);
 
         g1R0C0.setBackground(new java.awt.Color(255, 255, 255));
         g1R0C0.setText("A");
+        g1R0C0.assignLetter(new Letter(LetterEnum.A));
         g1R0C0.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         g1R0C0.setName("g1R0C0"); // NOI18N
         g1R0C0.addActionListener(new java.awt.event.ActionListener() {
@@ -152,6 +148,7 @@ public class playGame extends javax.swing.JFrame {
 
         g1R0C1.setBackground(new java.awt.Color(255, 255, 255));
         g1R0C1.setText("Q");
+        g1R0C1.assignLetter(new Letter(LetterEnum.Qu));
         g1R0C1.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         g1R0C1.setName("g1R0C1"); // NOI18N
         g1R0C1.addActionListener(new java.awt.event.ActionListener() {
@@ -162,6 +159,7 @@ public class playGame extends javax.swing.JFrame {
 
         g1R0C2.setBackground(new java.awt.Color(255, 255, 255));
         g1R0C2.setText("W");
+        g1R0C2.assignLetter(new Letter(LetterEnum.W));
         g1R0C2.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         g1R0C2.setName("g1R0C2"); // NOI18N
         g1R0C2.addActionListener(new java.awt.event.ActionListener() {
@@ -172,6 +170,7 @@ public class playGame extends javax.swing.JFrame {
 
         g1R1C2.setBackground(new java.awt.Color(255, 255, 255));
         g1R1C2.setText("M");
+        g1R1C2.assignLetter(new Letter(LetterEnum.M));
         g1R1C2.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         g1R1C2.setName("g1R1C2"); // NOI18N
         g1R1C2.addActionListener(new java.awt.event.ActionListener() {
@@ -182,6 +181,7 @@ public class playGame extends javax.swing.JFrame {
 
         g1R1C1.setBackground(new java.awt.Color(255, 255, 255));
         g1R1C1.setText("D");
+        g1R1C1.assignLetter(new Letter(LetterEnum.D));
         g1R1C1.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         g1R1C1.setName("g1R1C1"); // NOI18N
         g1R1C1.addActionListener(new java.awt.event.ActionListener() {
@@ -192,6 +192,7 @@ public class playGame extends javax.swing.JFrame {
 
         g1R1C0.setBackground(new java.awt.Color(255, 255, 255));
         g1R1C0.setText("V");
+        g1R1C0.assignLetter(new Letter(LetterEnum.V));
         g1R1C0.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         g1R1C0.setName("g1R1C0"); // NOI18N
         g1R1C0.addActionListener(new java.awt.event.ActionListener() {
@@ -202,6 +203,7 @@ public class playGame extends javax.swing.JFrame {
 
         g1R2C0.setBackground(new java.awt.Color(255, 255, 255));
         g1R2C0.setText("S");
+        g1R2C0.assignLetter(new Letter(LetterEnum.S));
         g1R2C0.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         g1R2C0.setName("g1R2C0"); // NOI18N
         g1R2C0.addActionListener(new java.awt.event.ActionListener() {
@@ -212,6 +214,7 @@ public class playGame extends javax.swing.JFrame {
 
         g1R2C1.setBackground(new java.awt.Color(255, 255, 255));
         g1R2C1.setText("A");
+        g1R2C1.assignLetter(new Letter(LetterEnum.A));
         g1R2C1.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         g1R2C1.setName("g1R2C1"); // NOI18N
         g1R2C1.addActionListener(new java.awt.event.ActionListener() {
@@ -222,6 +225,7 @@ public class playGame extends javax.swing.JFrame {
 
         g1R2C2.setBackground(new java.awt.Color(255, 255, 255));
         g1R2C2.setText("W");
+        g1R2C2.assignLetter(new Letter(LetterEnum.W));
         g1R2C2.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         g1R2C2.setName("g1R2C2"); // NOI18N
         g1R2C2.addActionListener(new java.awt.event.ActionListener() {
@@ -280,9 +284,11 @@ public class playGame extends javax.swing.JFrame {
         );
 
         grid2.setBackground(new java.awt.Color(45, 221, 255));
+        grid2.setGridNo(2);
 
         g2R0C0.setBackground(new java.awt.Color(255, 255, 255));
         g2R0C0.setText("A");
+        g2R0C0.assignLetter(new Letter(LetterEnum.A));
         g2R0C0.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         g2R0C0.setName("g2R0C0"); // NOI18N
         g2R0C0.addActionListener(new java.awt.event.ActionListener() {
@@ -293,6 +299,7 @@ public class playGame extends javax.swing.JFrame {
 
         g2R0C1.setBackground(new java.awt.Color(255, 255, 255));
         g2R0C1.setText("Q");
+        g2R0C1.assignLetter(new Letter(LetterEnum.Qu));
         g2R0C1.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         g2R0C1.setName("g2R0C1"); // NOI18N
         g2R0C1.addActionListener(new java.awt.event.ActionListener() {
@@ -303,6 +310,7 @@ public class playGame extends javax.swing.JFrame {
 
         g2R0C2.setBackground(new java.awt.Color(255, 255, 255));
         g2R0C2.setText("W");
+        g2R0C2.assignLetter(new Letter(LetterEnum.W));
         g2R0C2.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         g2R0C2.setName("g2R0C2"); // NOI18N
         g2R0C2.addActionListener(new java.awt.event.ActionListener() {
@@ -313,6 +321,7 @@ public class playGame extends javax.swing.JFrame {
 
         g2R1C2.setBackground(new java.awt.Color(255, 255, 255));
         g2R1C2.setText("M");
+        g2R1C2.assignLetter(new Letter(LetterEnum.M));
         g2R1C2.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         g2R1C2.setName("g2R1C2"); // NOI18N
         g2R1C2.addActionListener(new java.awt.event.ActionListener() {
@@ -323,6 +332,7 @@ public class playGame extends javax.swing.JFrame {
 
         g2R1C1.setBackground(new java.awt.Color(255, 255, 255));
         g2R1C1.setText("D");
+        g2R1C1.assignLetter(new Letter(LetterEnum.D));
         g2R1C1.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         g2R1C1.setName("g2R1C1"); // NOI18N
         g2R1C1.addActionListener(new java.awt.event.ActionListener() {
@@ -333,6 +343,7 @@ public class playGame extends javax.swing.JFrame {
 
         g2R1C0.setBackground(new java.awt.Color(255, 255, 255));
         g2R1C0.setText("V");
+        g2R1C0.assignLetter(new Letter(LetterEnum.V));
         g2R1C0.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         g2R1C0.setName("g2R1C0"); // NOI18N
         g2R1C0.addActionListener(new java.awt.event.ActionListener() {
@@ -343,6 +354,7 @@ public class playGame extends javax.swing.JFrame {
 
         g2R2C0.setBackground(new java.awt.Color(255, 255, 255));
         g2R2C0.setText("S");
+        g2R2C0.assignLetter(new Letter(LetterEnum.S));
         g2R2C0.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         g2R2C0.setName("g2R2C0"); // NOI18N
         g2R2C0.addActionListener(new java.awt.event.ActionListener() {
@@ -353,6 +365,7 @@ public class playGame extends javax.swing.JFrame {
 
         g2R2C1.setBackground(new java.awt.Color(255, 255, 255));
         g2R2C1.setText("A");
+        g2R2C1.assignLetter(new Letter(LetterEnum.A));
         g2R2C1.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         g2R2C1.setName("g2R2C1"); // NOI18N
         g2R2C1.addActionListener(new java.awt.event.ActionListener() {
@@ -363,6 +376,7 @@ public class playGame extends javax.swing.JFrame {
 
         g2R2C2.setBackground(new java.awt.Color(255, 255, 255));
         g2R2C2.setText("W");
+        g2R2C2.assignLetter(new Letter(LetterEnum.W));
         g2R2C2.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         g2R2C2.setName("g2R2C2"); // NOI18N
         g2R2C2.addActionListener(new java.awt.event.ActionListener() {
@@ -421,9 +435,11 @@ public class playGame extends javax.swing.JFrame {
         );
 
         grid3.setBackground(new java.awt.Color(45, 221, 255));
+        grid3.setGridNo(3);
 
         g3R0C0.setBackground(new java.awt.Color(255, 255, 255));
         g3R0C0.setText("A");
+        g3R0C0.assignLetter(new Letter(LetterEnum.A));
         g3R0C0.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         g3R0C0.setName("g3R0C0"); // NOI18N
         g3R0C0.addActionListener(new java.awt.event.ActionListener() {
@@ -434,6 +450,7 @@ public class playGame extends javax.swing.JFrame {
 
         g3R0C1.setBackground(new java.awt.Color(255, 255, 255));
         g3R0C1.setText("Q");
+        g3R0C1.assignLetter(new Letter(LetterEnum.Qu));
         g3R0C1.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         g3R0C1.setName("g3R0C1"); // NOI18N
         g3R0C1.addActionListener(new java.awt.event.ActionListener() {
@@ -444,6 +461,7 @@ public class playGame extends javax.swing.JFrame {
 
         g3R0C2.setBackground(new java.awt.Color(255, 255, 255));
         g3R0C2.setText("W");
+        g3R0C2.assignLetter(new Letter(LetterEnum.W));
         g3R0C2.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         g3R0C2.setName("g3R0C2"); // NOI18N
         g3R0C2.addActionListener(new java.awt.event.ActionListener() {
@@ -454,6 +472,7 @@ public class playGame extends javax.swing.JFrame {
 
         g3R1C2.setBackground(new java.awt.Color(255, 255, 255));
         g3R1C2.setText("M");
+        g3R1C2.assignLetter(new Letter(LetterEnum.M));
         g3R1C2.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         g3R1C2.setName("g3R1C2"); // NOI18N
         g3R1C2.addActionListener(new java.awt.event.ActionListener() {
@@ -464,6 +483,7 @@ public class playGame extends javax.swing.JFrame {
 
         g3R1C1.setBackground(new java.awt.Color(255, 255, 255));
         g3R1C1.setText("D");
+        g3R1C1.assignLetter(new Letter(LetterEnum.D));
         g3R1C1.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         g3R1C1.setName("g3R1C1"); // NOI18N
         g3R1C1.addActionListener(new java.awt.event.ActionListener() {
@@ -474,6 +494,7 @@ public class playGame extends javax.swing.JFrame {
 
         g3R1C0.setBackground(new java.awt.Color(255, 255, 255));
         g3R1C0.setText("V");
+        g3R1C0.assignLetter(new Letter(LetterEnum.V));
         g3R1C0.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         g3R1C0.setName("g3R1C0"); // NOI18N
         g3R1C0.addActionListener(new java.awt.event.ActionListener() {
@@ -484,6 +505,7 @@ public class playGame extends javax.swing.JFrame {
 
         g3R2C0.setBackground(new java.awt.Color(255, 255, 255));
         g3R2C0.setText("S");
+        g3R2C0.assignLetter(new Letter(LetterEnum.S));
         g3R2C0.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         g3R2C0.setName("g3R2C0"); // NOI18N
         g3R2C0.addActionListener(new java.awt.event.ActionListener() {
@@ -504,6 +526,7 @@ public class playGame extends javax.swing.JFrame {
 
         g3R2C2.setBackground(new java.awt.Color(255, 255, 255));
         g3R2C2.setText("W");
+        g3R2C2.assignLetter(new Letter(LetterEnum.W));
         g3R2C2.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         g3R2C2.setName("g3R2C2"); // NOI18N
         g3R2C2.addActionListener(new java.awt.event.ActionListener() {
@@ -561,6 +584,9 @@ public class playGame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        warningLabel.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        warningLabel.setForeground(new java.awt.Color(255, 0, 0));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -572,21 +598,26 @@ public class playGame extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(grid1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(312, 312, 312)
-                                .addComponent(changeViewBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(grid2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(grid3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 13, Short.MAX_VALUE))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(warningLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(grid1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(312, 312, 312)
+                                        .addComponent(changeViewBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(grid2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(grid3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 13, Short.MAX_VALUE)))))))
                 .addGap(34, 34, 34))
         );
         jPanel2Layout.setVerticalGroup(
@@ -600,7 +631,9 @@ public class playGame extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(grid1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(warningLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(4, 4, 4))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(changeViewBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -675,11 +708,33 @@ public class playGame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void populateGrids() {
+		grid1Tiles = new Tile[] { g1R0C0, g1R0C1, g1R0C2, g1R1C0, g1R1C1, g1R1C2, g1R2C0, g1R2C1, g1R2C2 };
+        grid1.setAllTiles(grid1Tiles);
+        grid1.generateRandomLetters();
+        grid1.populateGrid();
+		grid2Tiles = new Tile[] { g2R0C0, g2R0C1, g2R0C2, g2R1C0, g2R1C1, g2R1C2, g2R2C0, g2R2C1, g2R2C2 };
+        grid2.setAllTiles(grid2Tiles);
+        grid2.generateRandomLetters();
+        grid2.populateGrid();
+		grid3Tiles = new Tile[] { g3R0C0, g3R0C1, g3R0C2, g3R1C0, g3R1C1, g3R1C2, g3R2C0, g3R2C1, g3R2C2 };
+        grid3.setAllTiles(grid3Tiles);
+        grid3.generateRandomLetters();
+        grid3.populateGrid();
+    }
+    
+
     private void handleTileAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_handleTileAction
         // TODO add your handling code here:
-		javax.swing.JButton btn = (javax.swing.JButton) evt.getSource();
-		System.out.println(btn.getName());
-		
+        Tile tile = (Tile) evt.getSource();
+        Grid parent = (Grid) tile.getParent();
+        if (parent == grid1) {
+            grid1.handleTileAction(evt, warningLabel);
+        } else if (parent == grid2) {
+            grid2.handleTileAction(evt, warningLabel);
+        } else if (parent == grid3) {
+            grid3.handleTileAction(evt, warningLabel);
+        }
     }//GEN-LAST:event_handleTileAction
 
     /**
@@ -714,6 +769,7 @@ public class playGame extends javax.swing.JFrame {
             public void run() {
                 new playGame().setVisible(true);
             }
+			
         });
     }
 
@@ -762,5 +818,10 @@ public class playGame extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel scoreIcon;
+    private javax.swing.JLabel warningLabel;
     // End of variables declaration//GEN-END:variables
+	private Tile[] grid1Tiles;
+	private Tile[] grid2Tiles;
+	private Tile[] grid3Tiles;
+
 }
