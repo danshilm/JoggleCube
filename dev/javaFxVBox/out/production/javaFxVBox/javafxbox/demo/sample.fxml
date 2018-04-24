@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<SplitPane dividerPositions="0.29797979797979796" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+    <items>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+            <children>
+                <TextArea layoutY="61.0" prefHeight="337.0" prefWidth="175.0" text="WORDS" />
+                <ScrollBar layoutX="154.0" layoutY="61.0" orientation="VERTICAL" prefHeight="337.0" prefWidth="20.0" />
+                <Label layoutX="14.0" layoutY="21.0" text="TIME" />
+                <TextArea layoutX="52.0" layoutY="11.0" prefHeight="38.0" prefWidth="71.0" />
+            </children>
+        </AnchorPane>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+            <children>
+                <VBox layoutX="156.0" layoutY="33.0" prefHeight="200.0" prefWidth="100.0">
+                    <children>
+
+                        <fx:include source="grid1.fxml" />
+                        <fx:include source="grid2.fxml" />
+                        <fx:include source="grid3.fxml" />
+                        <!--<GridPane>-->
+                            <!--<columnConstraints>-->
+                                <!--<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>-->
+                                <!--<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>-->
+                                <!--<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>-->
+                            <!--</columnConstraints>-->
+                            <!--<rowConstraints>-->
+                                <!--<RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>-->
+                                <!--<RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>-->
+                                <!--<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>-->
+                            <!--</rowConstraints>-->
+                            <!--<children>-->
+                                <!--<Button mnemonicParsing="false" prefWidth="35.0" text="W"/>-->
+                                <!--<Button mnemonicParsing="false" prefWidth="39.0" text="A" GridPane.columnIndex="1"/>-->
+                                <!--<Button mnemonicParsing="false" prefWidth="38.0" text="E" GridPane.columnIndex="2"/>-->
+                                <!--<Button mnemonicParsing="false" prefWidth="40.0" text="M" GridPane.rowIndex="1"/>-->
+                                <!--<Button mnemonicParsing="false" prefWidth="39.0" text="T" GridPane.columnIndex="1"-->
+                                        <!--GridPane.rowIndex="1"/>-->
+                                <!--<Button mnemonicParsing="false" prefWidth="40.0" text="E" GridPane.columnIndex="2"-->
+                                        <!--GridPane.rowIndex="1"/>-->
+                                <!--<Button mnemonicParsing="false" prefWidth="37.0" text="R" GridPane.rowIndex="2"/>-->
+                                <!--<Button mnemonicParsing="false" prefWidth="37.0" text="C" GridPane.columnIndex="1"-->
+                                        <!--GridPane.rowIndex="2"/>-->
+                                <!--<Button mnemonicParsing="false" prefWidth="35.0" text="J" GridPane.columnIndex="2"-->
+                                        <!--GridPane.rowIndex="2"/>-->
+                            <!--</children>-->
+                            <!--<rotationAxis>-->
+                                <!--<Point3D x="5.0" y="10.0" z="10.0"/>-->
+                            <!--</rotationAxis>-->
+                        <!--</GridPane>-->
+                        <!--<GridPane translateY="25.0">-->
+                            <!--<columnConstraints>-->
+                                <!--<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>-->
+                                <!--<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>-->
+                                <!--<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>-->
+                            <!--</columnConstraints>-->
+                            <!--<rowConstraints>-->
+                                <!--<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>-->
+                                <!--<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>-->
+                                <!--<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>-->
+                            <!--</rowConstraints>-->
+                            <!--<children>-->
+                                <!--<Button mnemonicParsing="false" prefHeight="25.0" prefWidth="38.0" text="D"/>-->
+                                <!--<Button mnemonicParsing="false" prefHeight="25.0" prefWidth="41.0" text="R"-->
+                                        <!--GridPane.columnIndex="1"/>-->
+                                <!--<Button mnemonicParsing="false" prefHeight="25.0" prefWidth="56.0" text="H"-->
+                                        <!--GridPane.columnIndex="2"/>-->
+                                <!--<Button mnemonicParsing="false" prefHeight="25.0" prefWidth="42.0" text="O"-->
+                                        <!--GridPane.rowIndex="1"/>-->
+                                <!--<Button mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" text="Z"-->
+                                        <!--GridPane.columnIndex="1" GridPane.rowIndex="1"/>-->
+                                <!--<Button mnemonicParsing="false" prefHeight="25.0" prefWidth="53.0" text="L"-->
+                                        <!--GridPane.columnIndex="2" GridPane.rowIndex="1"/>-->
+                                <!--<Button mnemonicParsing="false" prefHeight="25.0" prefWidth="39.0" text="N"-->
+                                        <!--GridPane.rowIndex="2"/>-->
+                                <!--<Button mnemonicParsing="false" prefHeight="25.0" prefWidth="41.0" text="T"-->
+                                        <!--GridPane.columnIndex="1" GridPane.rowIndex="2"/>-->
+                                <!--<Button mnemonicParsing="false" prefHeight="25.0" prefWidth="41.0" text="X"-->
+                                        <!--GridPane.columnIndex="2" GridPane.rowIndex="2"/>-->
+                            <!--</children>-->
+                            <!--<rotationAxis>-->
+                                <!--<Point3D x="5.0" y="10.0" z="10.0"/>-->
+                            <!--</rotationAxis>-->
+                            <!--<VBox.margin>-->
+                                <!--<Insets top="20.0"/>-->
+                            <!--</VBox.margin>-->
+                        <!--</GridPane>-->
+                        <!--<GridPane translateY="50.0">-->
+                            <!--<columnConstraints>-->
+                                <!--<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>-->
+                                <!--<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>-->
+                                <!--<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>-->
+                            <!--</columnConstraints>-->
+                            <!--<rowConstraints>-->
+                                <!--<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>-->
+                                <!--<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>-->
+                                <!--<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>-->
+                            <!--</rowConstraints>-->
+                            <!--<children>-->
+                                <!--<Button mnemonicParsing="false" prefHeight="25.0" prefWidth="42.0" text="I"/>-->
+                                <!--<Button mnemonicParsing="false" prefHeight="25.0" prefWidth="39.0" text="T"-->
+                                        <!--GridPane.columnIndex="1"/>-->
+                                <!--<Button mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" text="I"-->
+                                        <!--GridPane.columnIndex="2"/>-->
+                                <!--<Button mnemonicParsing="false" prefHeight="25.0" prefWidth="41.0" text="S"-->
+                                        <!--GridPane.rowIndex="1"/>-->
+                                <!--<Button mnemonicParsing="false" prefHeight="25.0" prefWidth="39.0" text="U"-->
+                                        <!--GridPane.columnIndex="1" GridPane.rowIndex="1"/>-->
+                                <!--<Button mnemonicParsing="false" prefHeight="25.0" prefWidth="37.0" text="P"-->
+                                        <!--GridPane.columnIndex="2" GridPane.rowIndex="1"/>-->
+                                <!--<Button mnemonicParsing="false" prefHeight="25.0" prefWidth="38.0" text="O"-->
+                                        <!--GridPane.rowIndex="2"/>-->
+                                <!--<Button mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="F"-->
+                                        <!--GridPane.columnIndex="1" GridPane.rowIndex="2"/>-->
+                                <!--<Button mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" text="R"-->
+                                        <!--GridPane.columnIndex="2" GridPane.rowIndex="2"/>-->
+                            <!--</children>-->
+                            <!--<rotationAxis>-->
+                                <!--<Point3D x="5.0" y="10.0" z="10.0"/>-->
+                            <!--</rotationAxis>-->
+                            <!--<VBox.margin>-->
+                                <!--<Insets top="20.0"/>-->
+                            <!--</VBox.margin>-->
+                        <!--</GridPane>-->
+                    </children>
+                </VBox>
+            <HBox layoutY="362.0" prefHeight="7.0" prefWidth="416.0">
+               <children>
+                      <Button fx:id="addLetter" mnemonicParsing="false" onAction="#handleAddLetterAction" text="ADD WORD" />
+                      <TextField promptText="TYPE LETTER" />
+                      <Button fx:id="backspace" mnemonicParsing="false" onAction="#handleRemoveLetterAction" text="REMOVE LETTER" />
+               </children>
+            </HBox>
+            </children>
+        </AnchorPane>
+    </items>
+</SplitPane>
