@@ -1,0 +1,19 @@
+Use StringExpression to concatenate the letters that are being selected and print show them in the text field from where we can check for a correct word
+
+In the Controller class, use the initialize method instead of the constructor method as that one has access to the FXML fields referring to components defined in the FXML file
+
+Use fx:id, not id (for CSS)
+
+to change in real time for each selected letter:
+// Handle TextField text changes.
+myTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+    System.out.println("TextField Text Changed (newValue: " + newValue + ")");
+});
+
+When creating custom components for FXML, use `*Property` and make sure to add a SETTER for the property
+
+
+TODO:: Deselect tiles when click on unselectable tile
+TODO:: Add scores for each letter
+TODO:: Make findNeighbours go through all other grids by one space
+TODO::
