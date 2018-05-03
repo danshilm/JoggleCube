@@ -1,6 +1,6 @@
 
 /*
- * @gameHelp.java 1.1 2018/05/04
+ * @gameHelp.java 2.0 2018/05/04
  *
  * Copyright (c) 2018 Aberystwyth University.
  * All rights reserved.
