@@ -1,4 +1,3 @@
-
 /*
  * @gameHelp.java 2.0 2018/05/04
  *
@@ -25,7 +24,6 @@ public class gameHelp extends javax.swing.JFrame {
 
     /**
      * This method is called from within the constructor to initialize the form.
-     *
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -105,7 +103,7 @@ public class gameHelp extends javax.swing.JFrame {
                                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap())
         );
-        
+
         jPanel2Layout.setVerticalGroup(
                 jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel2Layout.createSequentialGroup()
@@ -129,7 +127,7 @@ public class gameHelp extends javax.swing.JFrame {
         );
 
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        // get the logo image to be display 
+        // get the logo image to be display
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uk/ac/aber/cs221/aumgroup/gameIcons/logo1Joggle2.png")));
         // set the layout of the jpanel 11
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -174,12 +172,14 @@ public class gameHelp extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
+     * The main class which implements the nimbus and display the form
+     *
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-       
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -200,6 +200,7 @@ public class gameHelp extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 new gameHelp().setVisible(true);
             }
@@ -220,4 +221,5 @@ public class gameHelp extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     // End of variables declaration  GEN-END:variables
 }
+
 
