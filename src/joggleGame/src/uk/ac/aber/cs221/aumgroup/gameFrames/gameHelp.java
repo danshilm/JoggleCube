@@ -17,7 +17,7 @@ package uk.ac.aber.cs221.aumgroup.gameFrames;
 public class gameHelp extends javax.swing.JFrame {
 
     /**
-     * This creates a new hameHelp form with the components initialised
+     * This creates a new gameHelp form with the components initialised
      */
     public gameHelp() {
         initComponents();
