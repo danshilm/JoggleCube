@@ -13,7 +13,7 @@ package uk.ac.aber.cs221.aumgroup.gameLogic;
  * <p>
  * A word is made up of letters and is each letter is going to be represented on a tile each
  * 
- * @author Danshil K Mungur
+ * @author Danshil K Mungur (dkm4)
  * @version 1.0 initial development with list of letters
  * @version 2.0 now works with letter population enumeration
  * @see LetterPopulation
@@ -56,11 +56,27 @@ public class Letter {
     }
 
 	/**
+	 * This is the getter method for the scrabble score of the letter
+	 * @return score of the letter
+	 */
+	public int getLetterValue() {
+		return letterValue;
+	}
+	
+	/**
 	 * This method prints out the character being represented
 	 * It is used when loading a saved game and when creating a tile
 	 * @return character string that is represented
 	 */
     public String printLetter() {
         return character.toString();
+    }
+	
+	/**
+	 * This is the setter method for the character that the letter represents
+	 * @param tLetter new letter to be represented
+	 */
+	public void setCharacter(String tLetter){
+        character = LetterPopulation.valueOf(tLetter);
     }
 }

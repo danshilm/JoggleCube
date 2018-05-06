@@ -9,15 +9,13 @@
 package uk.ac.aber.cs221.aumgroup.gameLogic;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
+import uk.ac.aber.cs221.aumgroup.gameFrames.GameMainClass;
 
 /**
  * Grid - The grid class, which is essentially a panel with custom attributes and methods
@@ -26,7 +24,7 @@ import static java.lang.Math.min;
  * Instances of the grid will be created using its constructor and
  * manipulated with the methods from each instance of the grid
  * 
- * @author Danshil K Mungur
+ * @author Danshil K Mungur (dkm4)
  * @version 1.0 initial development (for JavaFX)
  * @version 2.0 initial development (for Swing)
  * @version 2.1 generation and deployment of letters work correctly
@@ -37,9 +35,9 @@ import static java.lang.Math.min;
 public class Grid extends JPanel {
 
 	// constants, one for the number of rows, columns and tiles in one grid
-	private static final int NO_OF_TILES_IN_GRID = 9;
-	private static final int NO_OF_ROWS_IN_GRID = 3;
-	private static final int NO_OF_COLUMNS_IN_GRID = 3;
+	public static final int NO_OF_TILES_IN_GRID = 9;
+	public static final int NO_OF_ROWS_IN_GRID = 3;
+	public static final int NO_OF_COLUMNS_IN_GRID = 3;
 	// this is an array that holds all the tiles, and is also the way we reference to the tiles in the array
 	private Tile[] allTiles;
 	// this is an array of letters that will be generated randomly and later populated in the tiles
@@ -49,7 +47,8 @@ public class Grid extends JPanel {
 	// an array to hold the neighbouring tiles that also need to have tiles highlighted
 	private List<Grid> neighbourGrids = new ArrayList<>();
 	// this list of tiles will make up the word to check for in the dictionary
-	private List<Tile> selectedTiles = new ArrayList<>();
+	public List<Tile> selectedTiles = new ArrayList<>();
+	private GameMainClass gmc = new GameMainClass();
 
 	/**
 	 * This is the default constructor for a grid
@@ -67,11 +66,37 @@ public class Grid extends JPanel {
 	}
 
 	/**
+	 * This is the getter method for the number of the grid
+	 * @return integer representing the grid number
+	 */
+	public int getGridNo() {
+		return gridNo;
+	}
+
+	/**
+	 * This is the getter method for all the tiles that the grid holds
+	 * @return array of tiles which belong to this grid
+	 */
+	public Tile[] getAllTiles() {
+		return allTiles;
+	}
+	
+	/**
 	 * This method sets the allTiles array that we use to reference to each tile in a grid
 	 * @param allTiles what to set the allTiles array to
 	 */
 	public void setAllTiles(Tile[] allTiles) {
 		this.allTiles = allTiles;
+	}
+	
+	/**
+	 * This method sets the list of letters that are to be populated in the grid
+	 * so that they don't have to be generated
+	 * It is used when a saved game is loaded
+	 * @param letters the list of letters to use to populate the tiles
+	 */
+	public void setLetters(List<Letter> letters){
+		   generatedLetters = letters;
 	}
 
 	/**
@@ -128,114 +153,15 @@ public class Grid extends JPanel {
 		this.neighbourGrids = neighbourGrids;
 	}
 
+	/**
+	 * This method is used to highlight the valid tiles that can be selected next
+	 * in the other grids than the one where the tile which has been clicked is on
+	 * @param tilePosition the position of the tile which has been clicked
+	 */
 	public void setSelectableInNeighbourGrids(PositionInGrid tilePosition) {
         for (Grid neighbourGrid: neighbourGrids) {
             // TODO:: set neighbours as well as tile in tilePosition selectable to true
 
         }
 	}
-
-	/**
-	 * This event is fired up when a Tile is clicked
-	 * @param evt event being listened for
-	 */
-	public void handleTileAction(java.awt.event.ActionEvent evt, JLabel warningLabel) {
-		Tile clickedTile = (Tile) evt.getSource();
-		int row = clickedTile.getPos().getRowNumber();
-		int col = clickedTile.getPos().getColNumber();
-
-		/**
-		 * When clicked,
-		 *
-		 * check if is selectable first
-		 *		if yes
-		 *			set all tiles selectable to false (we will set the neighbours selectable to true later)
-		 *			highlight all tiles white (we will highlight the neighbours later)
-		 *			set clickedTile selected to true
-		 *			add tile to selectedTiles list in grid
-		 *			set neighbour tiles selectable to true
-		 *			highlight neighbour tiles red
-		 * 		if no
-		 *			empty selectedTiles list
-		 *			set all tiles selected to false (default)
-		 *			set all tiles selectable to true (default)
-		 *			highlight all tiles white
-		 *			display warning on label for 3 seconds 
-		 */
-
-		if (clickedTile.getIsTileSelectable()) {
-			// set all tiles selectable to false
-			for (Tile oneTile : allTiles) {
-				oneTile.setIsTileSelectable(false);
-				oneTile.highlightTile(Color.WHITE);
-			}
-
-			clickedTile.setSelected(true);
-			selectedTiles.add(clickedTile);
-
-			// this is to set all the neighbours selectable to true
-			// so that the player can select another tile after
-
-			// new and improved algo to set neighbours to selectable to true
-			int row_limit = NO_OF_ROWS_IN_GRID - 1;
-			if (row_limit > 0) {
-				int column_limit = NO_OF_COLUMNS_IN_GRID - 1;
-				for (int x = max(0, row - 1); x <= min(row + 1, row_limit); x++) {
-					for (int y = max(0, col - 1); y <= min(col + 1, column_limit); y++) {
-						if (x != row || y != col) {
-							setSelectableIfNotAlreadySelected(new PositionInGrid(x, y));
-						}
-					}
-				}
-			}
-
-			setSelectableInNeighbourGrids(new PositionInGrid(row, col));
-		} else {
-			// when user clicks on tile which is not selectable
-			selectedTiles.clear();
-			for (Tile oneTile : allTiles) {
-				oneTile.setSelected(false);
-				oneTile.setIsTileSelectable(true);
-				oneTile.highlightTile(Color.WHITE);
-			}
-			
-			warningLabel.setText("You clicked on an unselected tile!");
-			Timer t = new Timer(3000, new ActionListener() {
-
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					warningLabel.setText(null);
-				}
-			});
-			t.setRepeats(false);
-			t.start();
-		}
-	}
-	
-	/**
-	 * This method is used to make sure a tile that is already selected's selectable is set to true
-	 * @param position position of neighbour tile to check if already selected
-	 */
-	private void setSelectableIfNotAlreadySelected(PositionInGrid position) {
-		Boolean isAlreadyInSelected = false;
-		for (Tile selectedTile: selectedTiles) {
-			if (selectedTile.getPos() == position) {
-				isAlreadyInSelected = true;
-			}
-		}
-
-		if (isAlreadyInSelected) {
-			System.out.println("Tile at position: " + position + "is already in selected tiles list");
-		} else {
-			for (Tile oneTile: allTiles) {
-				if (oneTile.getPos().getRowNumber() == position.getRowNumber()) {
-					if (oneTile.getPos().getColNumber() == position.getColNumber()) {
-						oneTile.setIsTileSelectable(true);
-						oneTile.highlightTile(Color.RED);
-					}
-				}
-			}
-		}
-	}
-
 }

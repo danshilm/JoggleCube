@@ -6,37 +6,56 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ * Dictionary - A class that implements a dictionary of words that can be looked up
+ * to determine if they are valid words in scrabble or not
+ * <p>
+ * It is used when the user plays a word and the word has to be checked
+ * @author mai15
+ * @version 1.0 initial development
+ * @version 1.1 added binary search
+ * @version 1.2 added methods for hints
+ * @see GameMainClass
+ */
 public class Dictionary {
 
-	String[] words = new String[70000];
+	// array that hold the words in the dictionary
+	private String[] words = new String[69903];
 
-	public void readFile(String fileName) throws FileNotFoundException {
+	/**
+	 * This is the default constructor for a dictionary
+	 */
+	public Dictionary() {
+	}
+
+	/**
+	 * This method reads the dictionary file and adds the words to an array of words
+	 * @throws FileNotFoundException 
+	 */
+	public void readFile() throws FileNotFoundException {
 		int count = 0;
 
-		Scanner infile = new Scanner(new FileReader("wordlist.txt"));
+		Scanner infile = new Scanner(new FileReader("resources/wordlist.txt"));
 		while (infile.hasNext()) {
 			words[count] = infile.nextLine().toLowerCase();
 			count++;
 		}
-
-		Scanner in = new Scanner(System.in);
-		System.out.println("Enter search word: ");
-		String a = in.nextLine().toLowerCase();
-
-		search(a, words);
-
-		System.out.println(count);
 	}
 
 	/**
 	 * This method performs a binary search for a word in the dictionary
 	 * @param word this is the word being searched for
-	 * @param dictionaryArray this is the array holding every word in the dictionary
+	 * @return whether the word searched for exists or not
 	 */
-	private static void search(String word, String[] dictionaryArray) {
-		int index = Arrays.binarySearch(dictionaryArray,word);
-		System.out.println("Word found: "+ word);
-		System.out.println("Index: " + index);
+	public boolean search(String word) {
+		int index = Arrays.binarySearch(words,word);
+		if (index > 0) {
+			System.out.println("Word found: "+ word);
+			System.out.println("Index: " + index);
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	// we can have hints, or more than one kind of hints, each one having a certain point requirement

@@ -17,7 +17,7 @@ import java.awt.*;
  * <p>
  * It is used to make up the grids which all have 9 tiles and each tile represents a letter
  * 
- * @author Danshil K Mungur
+ * @author Danshil K Mungur (dkm4)
  * @version 1.0 initial development
  * @version 1.1 added methods to highlight, getters and setters
  * @see Grid
@@ -61,6 +61,14 @@ public class Tile extends JButton {
         super.setText(letter.printLetter());
         this.letter = letter;
     }
+
+	/**
+	 * This is the getter method for the letter that is represented by the tile
+	 * @return letter being represented
+	 */
+	public Letter getLetter() {
+		return letter;
+	}
 
     /**
      * Getter method for PositionInGrid
@@ -110,6 +118,14 @@ public class Tile extends JButton {
     public void highlightTile(Color colour) {
         this.setBackground(colour);
     }
+
+	/**
+	 * This is the getter method for the grid that the tile belongs to
+	 * @return the owner grid of the tile
+	 */
+	public Grid getOwnerGrid() {
+		return ownerGrid;
+	}
 
     /**
      * toString method overridden to be cleaner and not show information that is not essential

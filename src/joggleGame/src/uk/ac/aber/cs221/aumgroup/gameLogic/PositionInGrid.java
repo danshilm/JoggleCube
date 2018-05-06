@@ -13,7 +13,7 @@ package uk.ac.aber.cs221.aumgroup.gameLogic;
  * <p>
  * It is used to provide a position to a tile in the grid that it is a child of
  * 
- * @author Danshil K Mungur
+ * @author Danshil K Mungur (dkm4)
  * @version 1.0 initial development
  * @see Tile
  * @see Grid

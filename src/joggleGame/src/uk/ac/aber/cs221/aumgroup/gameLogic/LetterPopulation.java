@@ -14,7 +14,7 @@ package uk.ac.aber.cs221.aumgroup.gameLogic;
  * It is used a way of representing a letter while
  * still being able for each letter to have their own properties
  * 
- * @author Danshil K Mungur
+ * @author Danshil K Mungur (dkm4)
  * @version 1.0 initial development
  * @see Letter
  */
