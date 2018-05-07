@@ -1,5 +1,5 @@
 /*
- * @GameMainClass.java 2.2 2018/05/05
+ * @GameMainClass.java 2.3 2018/05/07
  *
  * Copyright (c) 2018 Aberystwyth University.
  * All rights reserved.
@@ -36,6 +36,7 @@ import uk.ac.aber.cs221.aumgroup.gameLogic.Tile;
  * @version 2.0 moved the tile action handle here instead of Grid and added functionality for current word (dkm4)
  * @version 2.1 added javadoc (jty)
  * @version 2.2 added functionality for player score and list of correct words (dkm4)
+ * @version 2.3 added countdown (dkm4, the12)
  * @see Grid
  * @see Letter
  * @see GameHelp
@@ -67,7 +68,9 @@ public class GameMainClass {
 	private Dictionary dict = new Dictionary();
 	// this will hold an instance of the field that shows the current word
 	private javax.swing.JTextField currentWordField;
-
+	private int countdownMinutes = 3;
+	private int countdownSeconds = 0;
+	
 	/**
 	 * This is the constructor method for the gameMainClass
 	 */
@@ -84,7 +87,7 @@ public class GameMainClass {
 
 	/**
 	 * This method is used so that there is only one instance of the PlayGame frame that is used and will be manipulated
- It also sets the grids so that they can be manipulated when required
+	 * It also sets the grids so that they can be manipulated when required
 	 * @param playGame the PlayGame frame used 
 	 */
 	public void setPlayGame(PlayGame playGame) {
@@ -137,6 +140,7 @@ public class GameMainClass {
 	public void showPlayGame() {
 		playGame = new PlayGame();
 		playGame.setVisible(true);
+		countdown();
 	}
 	
 	/**
@@ -155,21 +159,36 @@ public class GameMainClass {
 		gameScoreBoard.setVisible(true);
 	}
 	
+	/**
+	 * This method is called when the user chooses to load a saved game
+	 * after loading the game from the file the user has chosen
+	 * It initializes the game
+	 */
 	public void setPlaySavedGame() {
 		playSavedGame = new PlaySavedGame();
 	}
 	
+	/**
+	 * This method is called when the user chooses to load a saved game after initializing
+	 * It also sets the frame visible so the user can interact with the game
+	 */
 	public void showPlaySavedGame() {
 		playSavedGame.setVisible(true);
 	}
 	
+	/**
+	 * This method is called when the user chooses to display the main menu
+	 * It also sets it to visible
+	 */
 	public void showStartMenu() {
 		startMenu = new StartMenu();
 		startMenu.setVisible(true);
 	}
 	
-	
-	
+	/**
+	 * This method is called when the user chooses to load a game
+	 * It shows the game files from which the user can load a previously saved game
+	 */
 	public void showSelectGame() {
 		selectGame = new SelectGame();
 		selectGame.setVisible(true);
@@ -370,8 +389,10 @@ public class GameMainClass {
 			for (Letter letter: currentWord) {
 				wordScore += letter.getLetterValue();
 			}
+			System.out.println("Word score: " + wordScore);
+			System.out.println("Squared of word score: " + wordScore * wordScore);
 			playGame.setScore(playerScore + (wordScore * wordScore));
-			scoreLabel.setText(Integer.toString(playerScore));
+			scoreLabel.setText(Integer.toString(playerScore + (wordScore * wordScore)));
 			return true;
 		} else {
 			return false;
@@ -441,5 +462,44 @@ public class GameMainClass {
 			System.out.print(letter.printLetter());
 		}
 		System.out.println("");
+	}
+	
+	/**
+	 * This method is used to control the time available in one game
+	 * When the timer hits zero, the window is closed and the results are saved
+	 * The user is then prompted to enter additional details
+	 */
+	public void countdown() {
+		Thread counter = new Thread() {
+			public void run() {
+				try {
+					while (countdownMinutes >= 0) {
+						for (; countdownSeconds >= 0; countdownSeconds --) {
+							if (countdownSeconds == 59) {
+								playGame.setCountdownSeconds("59");
+							} else {
+								playGame.setCountdownSeconds(Integer.toString(countdownSeconds));
+							}
+							// this is just for cosmetic purposes since when the seconds go lower than 10
+							// it appears only as one digit, so a 0 is added at the front of it
+							// to maintain the 2 digit second display
+							if (countdownSeconds < 10) {
+								playGame.setCountdownSeconds("0" + Integer.toString(countdownSeconds));
+							}
+							sleep(1000);
+						}
+						countdownMinutes--;
+						playGame.setCountdownMinutes(Integer.toString(countdownMinutes));
+						countdownSeconds = 59;
+					}
+					// end game here
+					// TODO:: work here
+					
+                } catch (InterruptedException ex) {
+                    System.err.println(ex.getMessage());
+                }
+			}
+		};
+		counter.start();
 	}
 }

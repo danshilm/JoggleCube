@@ -55,7 +55,7 @@ public class PlaySavedGame extends javax.swing.JFrame {
 	
 	public void loadFile(String filename) 
            throws IOException{
-        Scanner infile =  new Scanner(new FileReader("savedGames/"+filename));
+        Scanner infile =  new Scanner(new FileReader("resources/savedGames/"+filename));
         Player player;
         //set the letters of the grids   
         grid1Tiles = new Tile[] { g1R0C0, g1R0C1, g1R0C2, g1R1C0, g1R1C1, g1R1C2, g1R2C0, g1R2C1, g1R2C2 };
@@ -199,9 +199,11 @@ public class PlaySavedGame extends javax.swing.JFrame {
         scoreBoardPanel = new javax.swing.JPanel();
         nameHeader = new javax.swing.JLabel();
         scoreHeader = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
         scoreIcon = new javax.swing.JLabel();
         scoreLabel = new javax.swing.JLabel();
+        countdownMinutes = new javax.swing.JLabel();
+        countdownColon = new javax.swing.JLabel();
+        countdownSeconds = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("Game Play"); // NOI18N
@@ -822,24 +824,35 @@ public class PlaySavedGame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-
         scoreIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uk/ac/aber/cs221/aumgroup/gameIcons/favourites-star-SH-icon.png"))); // NOI18N
 
         scoreLabel.setFont(new java.awt.Font("Agency FB", 1, 28)); // NOI18N
         scoreLabel.setText("0");
+
+        countdownMinutes.setFont(new java.awt.Font("Tahoma", 1, 28)); // NOI18N
+        countdownMinutes.setText("3");
+
+        countdownColon.setFont(new java.awt.Font("Tahoma", 1, 28)); // NOI18N
+        countdownColon.setText(":");
+
+        countdownSeconds.setFont(new java.awt.Font("Tahoma", 1, 28)); // NOI18N
+        countdownSeconds.setText("00");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addComponent(countdownIcon)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(countdownMinutes)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(countdownColon)
+                        .addGap(2, 2, 2)
+                        .addComponent(countdownSeconds)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(scoreIcon)
                         .addGap(18, 18, 18)
@@ -853,14 +866,19 @@ public class PlaySavedGame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(countdownIcon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(scoreIcon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(scoreLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(countdownIcon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(scoreIcon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(scoreLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(countdownMinutes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(countdownColon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(countdownSeconds, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(14, 14, 14)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         countdownIcon.getAccessibleContext().setAccessibleDescription("");
@@ -1048,7 +1066,10 @@ public class PlaySavedGame extends javax.swing.JFrame {
     private javax.swing.JButton changeViewBtn;
     private javax.swing.JButton clearWordBtn;
     private javax.swing.JList<String> correctWordsList;
+    private javax.swing.JLabel countdownColon;
     private javax.swing.JLabel countdownIcon;
+    private javax.swing.JLabel countdownMinutes;
+    private javax.swing.JLabel countdownSeconds;
     public javax.swing.JTextField currentWordField;
     private uk.ac.aber.cs221.aumgroup.gameLogic.Tile g1R0C0;
     private uk.ac.aber.cs221.aumgroup.gameLogic.Tile g1R0C1;
@@ -1086,7 +1107,6 @@ public class PlaySavedGame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel nameHeader;
     private javax.swing.JPanel scoreBoardPanel;
     private javax.swing.JLabel scoreHeader;
