@@ -47,7 +47,7 @@ public class PlaySavedGame extends javax.swing.JFrame {
      */
     public PlaySavedGame() {
         initComponents();
-        populateGrids();
+//        populateGrids();
 		main = new GameMainClass();
 		main.setPlaySavedGame(this);
 		
@@ -61,17 +61,17 @@ public class PlaySavedGame extends javax.swing.JFrame {
         grid1Tiles = new Tile[] { g1R0C0, g1R0C1, g1R0C2, g1R1C0, g1R1C1, g1R1C2, g1R2C0, g1R2C1, g1R2C2 };
         grid1.setAllTiles(grid1Tiles);
         grid1.setLetters(readLetters(infile));
-        grid1.populateGrid();
+//        grid1.populateGrid();
         
         grid2Tiles = new Tile[] { g2R0C0, g2R0C1, g2R0C2, g2R1C0, g2R1C1, g2R1C2, g2R2C0, g2R2C1, g2R2C2 };
         grid2.setAllTiles(grid2Tiles);
         grid2.setLetters(readLetters(infile));
-        grid2.populateGrid();
+//        grid2.populateGrid();
         
         grid3Tiles = new Tile[] { g3R0C0, g3R0C1, g3R0C2, g3R1C0, g3R1C1, g3R1C2, g3R2C0, g3R2C1, g3R2C2 };
         grid3.setAllTiles(grid3Tiles);
         grid3.setLetters(readLetters(infile));
-        grid3.populateGrid();
+//        grid3.populateGrid();
         
         //get the number of players who have played the game
         int numPlayers = Integer.parseInt(infile.nextLine());
@@ -902,20 +902,20 @@ public class PlaySavedGame extends javax.swing.JFrame {
 	 * This method is used to populate the 3 grids with tiles
 	 * that each have a randomly generated letter
 	 */
-    private void populateGrids() {
-		grid1Tiles = new Tile[] { g1R0C0, g1R0C1, g1R0C2, g1R1C0, g1R1C1, g1R1C2, g1R2C0, g1R2C1, g1R2C2 };
-        grid1.setAllTiles(grid1Tiles);
-        grid1.generateRandomLetters();
-        grid1.populateGrid();
-		grid2Tiles = new Tile[] { g2R0C0, g2R0C1, g2R0C2, g2R1C0, g2R1C1, g2R1C2, g2R2C0, g2R2C1, g2R2C2 };
-        grid2.setAllTiles(grid2Tiles);
-        grid2.generateRandomLetters();
-        grid2.populateGrid();
-		grid3Tiles = new Tile[] { g3R0C0, g3R0C1, g3R0C2, g3R1C0, g3R1C1, g3R1C2, g3R2C0, g3R2C1, g3R2C2 };
-        grid3.setAllTiles(grid3Tiles);
-        grid3.generateRandomLetters();
-        grid3.populateGrid();
-    }
+//    private void populateGrids() {
+//		grid1Tiles = new Tile[] { g1R0C0, g1R0C1, g1R0C2, g1R1C0, g1R1C1, g1R1C2, g1R2C0, g1R2C1, g1R2C2 };
+//        grid1.setAllTiles(grid1Tiles);
+//        grid1.generateRandomLetters();
+//        grid1.populateGrid();
+//		grid2Tiles = new Tile[] { g2R0C0, g2R0C1, g2R0C2, g2R1C0, g2R1C1, g2R1C2, g2R2C0, g2R2C1, g2R2C2 };
+//        grid2.setAllTiles(grid2Tiles);
+//        grid2.generateRandomLetters();
+//        grid2.populateGrid();
+//		grid3Tiles = new Tile[] { g3R0C0, g3R0C1, g3R0C2, g3R1C0, g3R1C1, g3R1C2, g3R2C0, g3R2C1, g3R2C2 };
+//        grid3.setAllTiles(grid3Tiles);
+//        grid3.generateRandomLetters();
+//        grid3.populateGrid();
+//    }
     
 	/**
 	 * This is the method that handle the user clicking on a tile

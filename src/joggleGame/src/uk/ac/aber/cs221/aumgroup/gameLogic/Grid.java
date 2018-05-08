@@ -13,8 +13,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-import static java.lang.Math.max;
-import static java.lang.Math.min;
 import uk.ac.aber.cs221.aumgroup.gameFrames.GameMainClass;
 
 /**
@@ -134,9 +132,9 @@ public class Grid extends JPanel {
 	/**
 	 * Set each tile of the grid to a letter that was randomly generated
 	 */
-	public void populateGrid() {
-		for (int i = 0; i < NO_OF_TILES_IN_GRID; i++) {
-			allTiles[i].assignLetter(generatedLetters.get(i));
+	public void populateGrid(List<Letter> gridLetters) {
+		for (int indexVariable = 0; indexVariable < NO_OF_TILES_IN_GRID; indexVariable++) {
+			allTiles[indexVariable].assignLetter(gridLetters.get(indexVariable));
 		}
 	}
 

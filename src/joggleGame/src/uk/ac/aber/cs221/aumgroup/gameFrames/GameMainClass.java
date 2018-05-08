@@ -1,5 +1,5 @@
 /*
- * @GameMainClass.java 2.3 2018/05/07
+ * @GameMainClass.java 2.4 2018/05/08
  *
  * Copyright (c) 2018 Aberystwyth University.
  * All rights reserved.
@@ -16,7 +16,9 @@ import static java.lang.Math.max;
 import static java.lang.Math.min;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -24,6 +26,7 @@ import javax.swing.Timer;
 import uk.ac.aber.cs221.aumgroup.gameLogic.Dictionary;
 import uk.ac.aber.cs221.aumgroup.gameLogic.Grid;
 import uk.ac.aber.cs221.aumgroup.gameLogic.Letter;
+import uk.ac.aber.cs221.aumgroup.gameLogic.LetterPopulation;
 import uk.ac.aber.cs221.aumgroup.gameLogic.PositionInGrid;
 import uk.ac.aber.cs221.aumgroup.gameLogic.Tile;
 
@@ -37,6 +40,7 @@ import uk.ac.aber.cs221.aumgroup.gameLogic.Tile;
  * @version 2.1 added javadoc (jty)
  * @version 2.2 added functionality for player score and list of correct words (dkm4)
  * @version 2.3 added countdown (dkm4, the12)
+ * @version 2.4 moved and updated random generation of letters from Grid to here (dkm4)
  * @see Grid
  * @see Letter
  * @see GameHelp
@@ -65,11 +69,21 @@ public class GameMainClass {
 	private List<String> correctWords = new ArrayList<>();
 	// the score of the player
 	private int playerScore;
-	private Dictionary dict = new Dictionary();
+	private final Dictionary dict = new Dictionary();
 	// this will hold an instance of the field that shows the current word
 	private javax.swing.JTextField currentWordField;
+	// these 2 variables represent the amount of minutes and seconds that one game lasts for and is countdown to 0
 	private int countdownMinutes = 3;
 	private int countdownSeconds = 0;
+	// this is the list of all letters that have been generated and will be populated in the grids
+	private List<Letter> generatedLetters = new ArrayList<>(NO_OF_TILES_IN_BOARD);
+	// constant to represent the number of letters in the whole board
+	private static final int NO_OF_TILES_IN_BOARD = 27;
+	private static final int NO_OF_TILES_IN_GRID = 9;
+	private List<Tile> grid1Tiles = new ArrayList<>(NO_OF_TILES_IN_GRID);
+	private List<Tile> grid2Tiles = new ArrayList<>(NO_OF_TILES_IN_GRID);
+	private List<Tile> grid3Tiles = new ArrayList<>(NO_OF_TILES_IN_GRID);
+	
 	
 	/**
 	 * This is the constructor method for the gameMainClass
@@ -136,6 +150,7 @@ public class GameMainClass {
 	
 	/**
 	 * This method is called by the button on the StartMenu frame when the "New game" button is clicked
+	 * and also starts the countdown as soon as it is displayed
 	 */
 	public void showPlayGame() {
 		playGame = new PlayGame();
@@ -204,6 +219,58 @@ public class GameMainClass {
 		StartMenu sM = new StartMenu();
 		sM.setVisible(true);
     }
+	
+	/**
+	 * This method generated 27 letters, 9 for each grid, randomly
+	 * It also checks if the letters being generated are not going over the maximum amount of that letter allowed on the board
+	 */
+	public void generateRandomLetters() {
+		int letterPopulationSize = LetterPopulation.values().length;
+		Random r = new Random();
+		LetterPopulation randomLetterEnum;
+
+		for (int indexVariable = 0; indexVariable < NO_OF_TILES_IN_BOARD; indexVariable++) {
+			randomLetterEnum = LetterPopulation.values()[r.nextInt(letterPopulationSize)];
+			// check that there is not already the max amount of a letter on the board
+			while (!checkOverflow(randomLetterEnum)) {
+				randomLetterEnum = LetterPopulation.values()[r.nextInt(letterPopulationSize)];
+			}
+			Letter tempLetter = new Letter(randomLetterEnum);
+			generatedLetters.add(tempLetter);
+		}
+	}
+	/**
+	 * This is the method responsible for checking that any letter randomly generated
+	 * is not exceeding the maximum number of occurrences allowed on the board
+	 * @param someLetterEnum the randomly generated letter
+	 * @return the number of times that letter has already been generated
+	 */
+	private Boolean checkOverflow(LetterPopulation someLetterEnum) {
+		Letter testLetter = new Letter(someLetterEnum);
+		int occurrences = 0;
+		for (Letter oneLetter: generatedLetters) {
+			if (oneLetter.printLetter().equals(testLetter.printLetter())) {
+				occurrences++;
+			}
+		}
+		return occurrences < testLetter.getNumAllowed();
+	}
+	
+	// 0 - 8
+	// 9 - 17
+	// 18 - 26
+	/**
+	 * This method is used to populate all 3 grids with the 27 randomly generated letters
+	 * Each grid will have 9 tiles which each represent a letter, therefore each grid is passed an array of 9 letters out of the 27 generated letters
+	 */
+	public void populateGrids() {
+		List<Letter> oneGridLetters = null;
+		for (Grid oneGrid: allGrids) {
+			oneGridLetters = generatedLetters.subList((0 + (allGrids.indexOf(oneGrid) * 9)), (9 + (allGrids.indexOf(oneGrid) * 9)));
+			oneGrid.populateGrid(oneGridLetters);
+		}
+	}
+	
 	
 	/**
 	 * This method updates the field where the current word should show when the user clicks on a tile
@@ -389,8 +456,6 @@ public class GameMainClass {
 			for (Letter letter: currentWord) {
 				wordScore += letter.getLetterValue();
 			}
-			System.out.println("Word score: " + wordScore);
-			System.out.println("Squared of word score: " + wordScore * wordScore);
 			playGame.setScore(playerScore + (wordScore * wordScore));
 			scoreLabel.setText(Integer.toString(playerScore + (wordScore * wordScore)));
 			return true;

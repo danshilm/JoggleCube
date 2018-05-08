@@ -1,5 +1,5 @@
 /*
-   * @(#) LetterPopulation.java 2.2 2018/02/25
+   * @(#) LetterPopulation.java 1.0 2018/02/25
    *
    * Copyright (c) 2018 Aberystwyth University
    * All rights reserved.

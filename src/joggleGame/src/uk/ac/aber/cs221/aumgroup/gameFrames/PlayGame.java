@@ -41,9 +41,9 @@ public class PlayGame extends javax.swing.JFrame {
      */
     public PlayGame() {
         initComponents();
-        populateGrids();
 		main = new GameMainClass();
 		main.setPlayGame(this);
+		populateGrids();
 		
     }
 
@@ -768,16 +768,15 @@ public class PlayGame extends javax.swing.JFrame {
     private void populateGrids() {
 		grid1Tiles = new Tile[] { g1R0C0, g1R0C1, g1R0C2, g1R1C0, g1R1C1, g1R1C2, g1R2C0, g1R2C1, g1R2C2 };
         grid1.setAllTiles(grid1Tiles);
-        grid1.generateRandomLetters();
-        grid1.populateGrid();
+		
 		grid2Tiles = new Tile[] { g2R0C0, g2R0C1, g2R0C2, g2R1C0, g2R1C1, g2R1C2, g2R2C0, g2R2C1, g2R2C2 };
         grid2.setAllTiles(grid2Tiles);
-        grid2.generateRandomLetters();
-        grid2.populateGrid();
+		
 		grid3Tiles = new Tile[] { g3R0C0, g3R0C1, g3R0C2, g3R1C0, g3R1C1, g3R1C2, g3R2C0, g3R2C1, g3R2C2 };
         grid3.setAllTiles(grid3Tiles);
-        grid3.generateRandomLetters();
-        grid3.populateGrid();
+		
+		main.generateRandomLetters();
+		main.populateGrids();
     }
     
 	/**
