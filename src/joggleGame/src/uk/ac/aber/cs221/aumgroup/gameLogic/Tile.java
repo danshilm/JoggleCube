@@ -35,6 +35,7 @@ public class Tile extends JButton {
 	private Grid ownerGrid;
 	// the position of the tile in the grid
     private PositionInGrid pos;
+	private Color selectedTilesColor = new Color(194, 202, 232);
 	
 	/**
 	 * This is the default constructor for a tile
@@ -109,6 +110,7 @@ public class Tile extends JButton {
 	@Override
     public void setSelected(boolean selected) {
         this.isTileSelected = true;
+		this.highlightTile(selectedTilesColor);
     }
 
     /**

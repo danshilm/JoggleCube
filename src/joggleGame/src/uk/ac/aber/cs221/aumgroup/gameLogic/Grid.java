@@ -8,12 +8,16 @@
 
 package uk.ac.aber.cs221.aumgroup.gameLogic;
 
+import java.awt.Color;
+import static java.lang.Math.max;
+import static java.lang.Math.min;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import uk.ac.aber.cs221.aumgroup.gameFrames.GameMainClass;
+import uk.ac.aber.cs221.aumgroup.gameFrames.PlayGame;
 
 /**
  * Grid - The grid class, which is essentially a panel with custom attributes and methods
@@ -46,7 +50,7 @@ public class Grid extends JPanel {
 	private List<Grid> neighbourGrids = new ArrayList<>();
 	// this list of tiles will make up the word to check for in the dictionary
 	public List<Tile> selectedTiles = new ArrayList<>();
-	private GameMainClass gmc = new GameMainClass();
+	private PlayGame game;
 
 	/**
 	 * This is the default constructor for a grid
@@ -96,6 +100,12 @@ public class Grid extends JPanel {
 	public void setLetters(List<Letter> letters){
 		   generatedLetters = letters;
 	}
+
+	public void setGame(PlayGame game) {
+		this.game = game;
+	}
+	
+	
 
 	/**
 	 * This method is to generate 9 random letters 
@@ -161,5 +171,49 @@ public class Grid extends JPanel {
             // TODO:: set neighbours as well as tile in tilePosition selectable to true
 
         }
+	}
+	
+	public void setSelectableTiles(Tile tileInFirstGrid, List<Tile> selectedTiles) {
+		int row = tileInFirstGrid.getPos().getRowNumber();
+		int col = tileInFirstGrid.getPos().getColNumber();
+		
+		int row_limit = Grid.NO_OF_ROWS_IN_GRID - 1;
+		if (row_limit > 0) {
+			int column_limit = Grid.NO_OF_COLUMNS_IN_GRID - 1;
+			for (int x = max(0, row - 1); x <= min(row + 1, row_limit); x++) {
+				for (int y = max(0, col - 1); y <= min(col + 1, column_limit); y++) {
+					for (int indexVariable = 0; indexVariable < NO_OF_TILES_IN_GRID; indexVariable++) {
+						if (allTiles[indexVariable].getPos().getRowNumber() == x) {
+							if (allTiles[indexVariable].getPos().getColNumber() == y) {
+								setSelectableIfNotSelected(new PositionInGrid(x, y), selectedTiles);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	public void setSelectableIfNotSelected(PositionInGrid position, List<Tile> selectedTiles) {
+		Boolean isAlreadyInSelected = false;
+		for (Tile selectedTile: selectedTiles) {
+			if (selectedTile.getOwnerGrid().getGridNo() == gridNo) {
+				if (selectedTile.getPos().getRowNumber() == position.getRowNumber()) {
+					if (selectedTile.getPos().getColNumber() == position.getColNumber()) {
+						isAlreadyInSelected = true;
+					}
+				}
+			}
+		}
+		if (!isAlreadyInSelected) {
+			for (int indexVariable = 0; indexVariable < NO_OF_TILES_IN_GRID; indexVariable++) {
+				if (allTiles[indexVariable].getPos().getRowNumber() == position.getRowNumber()) {
+					if (allTiles[indexVariable].getPos().getColNumber() == position.getColNumber()) {
+						allTiles[indexVariable].setIsTileSelectable(true);
+						allTiles[indexVariable].highlightTile(game.getMain().selectableTilesColor);
+					}
+				}
+			}
+		}
 	}
 }

@@ -65,6 +65,7 @@ public class GameMainClass {
 	private List<Grid> allGrids;
 	// this will hold the letters making up the current word
 	private List<Letter> currentWord = new ArrayList<>();
+	private List<Tile> selectedTiles = new ArrayList<>();
 	// this is the list of words that the user has already entered and are valid words which count towards the player score
 	private List<String> correctWords = new ArrayList<>();
 	// the score of the player
@@ -83,6 +84,8 @@ public class GameMainClass {
 	private List<Tile> grid1Tiles = new ArrayList<>(NO_OF_TILES_IN_GRID);
 	private List<Tile> grid2Tiles = new ArrayList<>(NO_OF_TILES_IN_GRID);
 	private List<Tile> grid3Tiles = new ArrayList<>(NO_OF_TILES_IN_GRID);
+	public Color selectedTilesColor = new Color(194, 202, 232);
+	public Color selectableTilesColor = new Color(241, 194, 50);
 	
 	
 	/**
@@ -147,6 +150,10 @@ public class GameMainClass {
 	public void setSelectGame(SelectGame selectGame) {
 		this.selectGame = selectGame;
 	}
+
+	public List<Tile> getSelectedTiles() {
+		return selectedTiles;
+	}
 	
 	/**
 	 * This method is called by the button on the StartMenu frame when the "New game" button is clicked
@@ -209,6 +216,8 @@ public class GameMainClass {
 		selectGame.setVisible(true);
 	}
 	
+	
+	
 	/**
 	 * This is the main method which is first fired up
 	 * displaying the start menu of the game
@@ -239,6 +248,7 @@ public class GameMainClass {
 			generatedLetters.add(tempLetter);
 		}
 	}
+	
 	/**
 	 * This is the method responsible for checking that any letter randomly generated
 	 * is not exceeding the maximum number of occurrences allowed on the board
@@ -303,19 +313,21 @@ public class GameMainClass {
 	 */
 	private void setSelectableIfNotAlreadySelected(PositionInGrid position, Grid ownerGrid) {
 		Boolean isAlreadyInSelected = false;
-		for (Tile selectedTile : ownerGrid.selectedTiles) {
-			if (selectedTile.getPos() == position) {
-				isAlreadyInSelected = true;
+		for (Tile selectedTile: selectedTiles) {
+			if (selectedTile.getOwnerGrid().getGridNo() == ownerGrid.getGridNo()) {
+				if (selectedTile.getPos().getRowNumber() == position.getRowNumber()) {
+					if (selectedTile.getPos().getColNumber() == position.getColNumber()) {
+						isAlreadyInSelected = true;
+					}
+				}
 			}
 		}
-		if (isAlreadyInSelected) {
-			System.out.println("Tile at position: " + position + "is already in selected tiles list");
-		} else {
+		if (!isAlreadyInSelected) {
 			for (Tile oneTile : ownerGrid.getAllTiles()) {
 				if (oneTile.getPos().getRowNumber() == position.getRowNumber()) {
 					if (oneTile.getPos().getColNumber() == position.getColNumber()) {
 						oneTile.setIsTileSelectable(true);
-						oneTile.highlightTile(Color.YELLOW);
+						oneTile.highlightTile(selectableTilesColor);
 					}
 				}
 			}
@@ -353,12 +365,17 @@ public class GameMainClass {
 		 */
 		if (clickedTile.getIsTileSelectable()) {
 			// set all tiles selectable to false
-			for (Tile oneTile : ownerGrid.getAllTiles()) {
-				oneTile.setIsTileSelectable(false);
-				oneTile.highlightTile(Color.WHITE);
+			for (Grid oneGrid: allGrids) {
+				for (Tile oneTile : oneGrid.getAllTiles()) {
+					oneTile.setIsTileSelectable(false);
+					oneTile.highlightTile(Color.WHITE);				
+				}
+			}
+			for (Tile selectedTile: selectedTiles) {
+				selectedTile.highlightTile(selectedTilesColor);
 			}
 			clickedTile.setSelected(true);
-			ownerGrid.selectedTiles.add(clickedTile);
+			selectedTiles.add(clickedTile);
 			updateCurrentWord(evt);
 			// this is to set all the neighbours selectable to true
 			// so that the player can select another tile after
@@ -375,7 +392,7 @@ public class GameMainClass {
 					}
 				}
 			}
-			ownerGrid.setSelectableInNeighbourGrids(new PositionInGrid(row, col));
+			setSelectableInNeighbourGrids(clickedTile, selectedTiles, ownerGrid);
 		} else {
 			// when user clicks on tile which is not selectable
 			// clear tiles selected in all grids
@@ -383,7 +400,7 @@ public class GameMainClass {
 			clearTileSelection();
 			clearCurrentWord();
 			// display warning for 3 seconds
-			warningLabel.setText("You clicked on an unselected tile!");
+			warningLabel.setText("You clicked on an invalid tile!");
 			Timer t = new Timer(3000, new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -401,7 +418,7 @@ public class GameMainClass {
 	 */
 	public void clearTileSelection() {
 		for (Grid oneGrid: allGrids) {
-			oneGrid.selectedTiles.clear();
+			selectedTiles.clear();
 			for (Tile oneTile : oneGrid.getAllTiles()) {
 				oneTile.setSelected(false);
 				oneTile.setIsTileSelectable(true);
@@ -566,5 +583,32 @@ public class GameMainClass {
 			}
 		};
 		counter.start();
+	}
+	
+	public void setSelectableInNeighbourGrids(Tile tileInOriginGrid, List<Tile> selectedTiles, Grid ownerGridOfTile) {
+		List<Grid> neighbourGrids = getNeighbourGrids(ownerGridOfTile);
+		for (Grid eachGrid: neighbourGrids) {
+			eachGrid.setSelectableTiles(tileInOriginGrid, selectedTiles);
+		}
+	}
+
+	public List<Grid> getNeighbourGrids(Grid ownerGrid) {
+	   List<Grid> neighbourGrids = new ArrayList<>();
+	   switch (ownerGrid.getGridNo()) {
+		   case 1:
+			   neighbourGrids.add(allGrids.get(1));
+			   break;
+		   case 2:
+			   neighbourGrids.add(allGrids.get(0));
+			   neighbourGrids.add(allGrids.get(2));
+			   break;
+		   case 3:
+			   neighbourGrids.add(allGrids.get(1));
+			   break;
+		   default:
+			   System.err.println("This should never happen");
+			   break;
+	   }
+	   return neighbourGrids;
 	}
 }
