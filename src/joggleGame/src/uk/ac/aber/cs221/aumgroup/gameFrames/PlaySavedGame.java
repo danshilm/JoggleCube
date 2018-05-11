@@ -7,10 +7,13 @@
  */
 package uk.ac.aber.cs221.aumgroup.gameFrames;
 
+import java.awt.*;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -25,6 +28,7 @@ import javax.swing.JLabel;
 import uk.ac.aber.cs221.aumgroup.gameLogic.Letter;
 import uk.ac.aber.cs221.aumgroup.gameLogic.Tile;
 import uk.ac.aber.cs221.aumgroup.gameLogic.Grid;
+import uk.ac.aber.cs221.aumgroup.gameLogic.LetterPopulation;
 import uk.ac.aber.cs221.aumgroup.gameLogic.Player;
 import uk.ac.aber.cs221.aumgroup.gameLogic.PositionInGrid;
 
@@ -49,29 +53,32 @@ public class PlaySavedGame extends javax.swing.JFrame {
         initComponents();
 //        populateGrids();
 		main = new GameMainClass();
-		main.setPlaySavedGame(this);
-		
+		main.setPlaySavedGame(this);	
+    }
+	
+	public void setFilename(String filename){
+        savedFile = filename;
     }
 	
 	public void loadFile(String filename) 
            throws IOException{
+		
         Scanner infile =  new Scanner(new FileReader("resources/savedGames/"+filename));
         Player player;
         //set the letters of the grids   
         grid1Tiles = new Tile[] { g1R0C0, g1R0C1, g1R0C2, g1R1C0, g1R1C1, g1R1C2, g1R2C0, g1R2C1, g1R2C2 };
         grid1.setAllTiles(grid1Tiles);
-        grid1.setLetters(readLetters(infile));
-//        grid1.populateGrid();
+		main.addToGeneratedList(readLetters(infile));
         
         grid2Tiles = new Tile[] { g2R0C0, g2R0C1, g2R0C2, g2R1C0, g2R1C1, g2R1C2, g2R2C0, g2R2C1, g2R2C2 };
         grid2.setAllTiles(grid2Tiles);
-        grid2.setLetters(readLetters(infile));
-//        grid2.populateGrid();
+		main.addToGeneratedList(readLetters(infile));
         
         grid3Tiles = new Tile[] { g3R0C0, g3R0C1, g3R0C2, g3R1C0, g3R1C1, g3R1C2, g3R2C0, g3R2C1, g3R2C2 };
         grid3.setAllTiles(grid3Tiles);
-        grid3.setLetters(readLetters(infile));
-//        grid3.populateGrid();
+		main.addToGeneratedList(readLetters(infile));
+		
+		main.populateGrids();
         
         //get the number of players who have played the game
         int numPlayers = Integer.parseInt(infile.nextLine());
@@ -97,8 +104,6 @@ public class PlaySavedGame extends javax.swing.JFrame {
             player = new Player(name,Integer.parseInt(score));
             previousPlayers.add(player);
         }
-        
-        
     }
 	
 	/**
@@ -111,28 +116,28 @@ public class PlaySavedGame extends javax.swing.JFrame {
         List<Letter> gridLetters = new ArrayList<>(9);
         Letter letter;
         
-            //read the three lines corresponding to the letters in a grid
+        //read the three lines corresponding to the letters in a grid
         for(int row=0; row<3; row++){
             String rowLetters="";
             rowLetters = infile.nextLine();
             
             //the first letter in the line is at position 0
             int pos=0;
+			
             //add the letters in the list 
-            while(pos < rowLetters.length()){
-                //instantiate Letter
-                 letter = new Letter();
+            while (pos < rowLetters.length()){
+                String newString = Character.toString(rowLetters.charAt(pos));
+				
                 //Qu is considered as one letter
                 if(rowLetters.charAt(pos)== 'Q'){
                     //Q is followed by u
-                    letter.setCharacter("Qu");
+					letter = new Letter(LetterPopulation.valueOf("Qu"));
                     //increment pos so that in the next iteration u is not read as a different letter
                     pos++;
                     //add Qu to the list
                     gridLetters.add(letter);
                 }else{
-                    System.out.println(valueOf(rowLetters.charAt(pos)));
-                    letter.setCharacter(valueOf(rowLetters.charAt(pos)));
+					letter = new Letter(LetterPopulation.valueOf(newString));
                     gridLetters.add(letter);
                 }
                 //increment pos to read next letter
@@ -205,7 +210,7 @@ public class PlaySavedGame extends javax.swing.JFrame {
         countdownColon = new javax.swing.JLabel();
         countdownSeconds = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setName("Game Play"); // NOI18N
         setResizable(false);
 
@@ -217,11 +222,7 @@ public class PlaySavedGame extends javax.swing.JFrame {
         jPanel2.setForeground(new java.awt.Color(255, 0, 0));
 
         correctWordsList.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        correctWordsList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        correctWordsList.setModel(new DefaultListModel());
         jScrollPane1.setViewportView(correctWordsList);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -252,6 +253,7 @@ public class PlaySavedGame extends javax.swing.JFrame {
 
         warningLabel.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         warningLabel.setForeground(new java.awt.Color(255, 0, 0));
+        warningLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -265,10 +267,10 @@ public class PlaySavedGame extends javax.swing.JFrame {
                         .addGap(24, 24, 24)
                         .addComponent(clearWordBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(addWordBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE))
+                        .addComponent(addWordBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(warningLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(433, 433, 433))))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -769,7 +771,7 @@ public class PlaySavedGame extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(12, 12, 12)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1)
@@ -790,7 +792,7 @@ public class PlaySavedGame extends javax.swing.JFrame {
                                 .addComponent(grid2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(grid3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 13, Short.MAX_VALUE)))))
+                                .addGap(13, 13, 13)))))
                 .addGap(34, 34, 34))
         );
         jPanel2Layout.setVerticalGroup(
@@ -804,16 +806,16 @@ public class PlaySavedGame extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(grid1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(changeViewBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGap(75, 75, 75)
                                         .addComponent(grid2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(153, 153, 153)
                                         .addComponent(grid3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(36, 36, 36)))))
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -821,7 +823,7 @@ public class PlaySavedGame extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane2)))
-                .addContainerGap())
+                .addGap(13, 13, 13))
         );
 
         scoreIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uk/ac/aber/cs221/aumgroup/gameIcons/favourites-star-SH-icon.png"))); // NOI18N
@@ -899,25 +901,6 @@ public class PlaySavedGame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 	/**
-	 * This method is used to populate the 3 grids with tiles
-	 * that each have a randomly generated letter
-	 */
-//    private void populateGrids() {
-//		grid1Tiles = new Tile[] { g1R0C0, g1R0C1, g1R0C2, g1R1C0, g1R1C1, g1R1C2, g1R2C0, g1R2C1, g1R2C2 };
-//        grid1.setAllTiles(grid1Tiles);
-//        grid1.generateRandomLetters();
-//        grid1.populateGrid();
-//		grid2Tiles = new Tile[] { g2R0C0, g2R0C1, g2R0C2, g2R1C0, g2R1C1, g2R1C2, g2R2C0, g2R2C1, g2R2C2 };
-//        grid2.setAllTiles(grid2Tiles);
-//        grid2.generateRandomLetters();
-//        grid2.populateGrid();
-//		grid3Tiles = new Tile[] { g3R0C0, g3R0C1, g3R0C2, g3R1C0, g3R1C1, g3R1C2, g3R2C0, g3R2C1, g3R2C2 };
-//        grid3.setAllTiles(grid3Tiles);
-//        grid3.generateRandomLetters();
-//        grid3.populateGrid();
-//    }
-    
-	/**
 	 * This is the method that handle the user clicking on a tile
 	 * If the tile is selectable, it will highlight the tiles that the user can use next
 	 * else it will display a warning
@@ -960,6 +943,29 @@ public class PlaySavedGame extends javax.swing.JFrame {
 			Logger.getLogger(PlayGame.class.getName()).log(Level.SEVERE, null, ex);
 		}
     }//GEN-LAST:event_addWordBtn
+
+	public void endSavedGame() {
+		close();
+        gameFrames.ScoreMenu sM = new gameFrames.ScoreMenu();
+		main.setScoreMenu(sM);
+        //set the game type
+        sM.setGameType(false);
+        //pass a copy of the game to be saved
+        sM.getCopyPlayedGame(grid1,grid2,grid3,score);
+        //set the filename of the game loaded
+        sM.setFilename(savedFile);
+        //set the previous players of the loaded game
+        sM.setPlayers(previousPlayers);
+        //display the appropriate pane
+        sM.checking();
+        sM.setVisible(true);
+	}
+	
+	public void close(){
+        //close the current window
+        WindowEvent winClosingEvent = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosingEvent);
+    }
 	
 	/**
 	 * This is the getter method for the text field where the currently selected word is shown
@@ -1015,6 +1021,14 @@ public class PlaySavedGame extends javax.swing.JFrame {
 	 */
 	public void setScore(int score) {
 		this.score = score;
+	}
+	
+	public void setCountdownMinutes(String minutes) {
+		this.countdownMinutes.setText(minutes);
+	}
+	
+	public void setCountdownSeconds(String seconds) {
+		this.countdownSeconds.setText(seconds);
 	}
 	
     /**

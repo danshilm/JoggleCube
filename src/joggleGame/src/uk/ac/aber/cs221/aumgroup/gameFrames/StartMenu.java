@@ -188,6 +188,7 @@ public class StartMenu extends javax.swing.JFrame {
 	 */
     private void jbLoadGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLoadGameActionPerformed
 		main.showSelectGame();
+		close();
     }//GEN-LAST:event_jbLoadGameActionPerformed
 
     /**

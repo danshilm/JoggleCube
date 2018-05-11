@@ -308,6 +308,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Change View"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="changeViewBtnActionPerformed"/>
+              </Events>
             </Component>
             <Container class="uk.ac.aber.cs221.aumgroup.gameLogic.Grid" name="grid1">
               <Properties>

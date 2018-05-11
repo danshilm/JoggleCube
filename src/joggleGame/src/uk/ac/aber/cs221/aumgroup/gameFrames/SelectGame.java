@@ -69,16 +69,17 @@ public class SelectGame extends javax.swing.JFrame {
 			jPanel1.add(button,gbConstraints); 
 			button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent ae) {
-				   close();
-				   PlaySavedGame pSavedGame = new PlaySavedGame();
-				   main.setPlaySavedGame(pSavedGame);
+					close();
+					PlaySavedGame pSavedGame = new PlaySavedGame();
+					main.setPlaySavedGame(pSavedGame);
+					pSavedGame.setFilename(filename);
 					try {
 						pSavedGame.loadFile(filename);
 					} catch (IOException ex) {
 						System.err.println(ex.getMessage());
 					}
-				   main.showPlaySavedGame();
-	//               pSavedGame.setVisible(true);
+					 main.showPlaySavedGame();
+	 //               pSavedGame.setVisible(true);
 				}
 			});
 		}
@@ -145,8 +146,7 @@ public class SelectGame extends javax.swing.JFrame {
 
     private void mainMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainMenuButtonActionPerformed
         close();
-		
-//		main.showStartMenu();
+		main.showStartMenu();
 //        startMenu sM = new startMenu();
 //        sM.setVisible(true);
     }//GEN-LAST:event_mainMenuButtonActionPerformed

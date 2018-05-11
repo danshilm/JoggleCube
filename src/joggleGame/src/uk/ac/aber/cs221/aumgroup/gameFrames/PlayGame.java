@@ -178,6 +178,11 @@ public class PlayGame extends javax.swing.JFrame {
         );
 
         changeViewBtn.setText("Change View");
+        changeViewBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changeViewBtnActionPerformed(evt);
+            }
+        });
 
         grid1.setBackground(new java.awt.Color(45, 221, 255));
         grid1.setGridNo(1);
@@ -823,8 +828,29 @@ public class PlayGame extends javax.swing.JFrame {
 		} catch (FileNotFoundException ex) {
 			Logger.getLogger(PlayGame.class.getName()).log(Level.SEVERE, null, ex);
 		}
+		
+		
+		// call this when countdown ends
+//		  closeFrame();
+//        ScoreMenu sM = new ScoreMenu();
+//        //set the game type
+//        sM.setGameType(true);
+//        //pass a copy of the just played game to score menu in case the player wants to save
+//        sM.getCopyPlayedGame(grid1,grid2,grid3,score);
+//        //check if the player score is among the ten best as its is a new game
+//        sM.checking();
+//        //display the gameOver pane
+//        sM.setVisible(true);
     }//GEN-LAST:event_addWordBtn
 
+    private void changeViewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeViewBtnActionPerformed
+        // TODO add your handling code here:
+		
+		
+    }//GEN-LAST:event_changeViewBtnActionPerformed
+
+	
+	
 	/**
 	 * This is the getter method for the text field where the currently selected word is shown
 	 * @return JTextField displaying the current word

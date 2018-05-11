@@ -7,6 +7,15 @@
  */
 package uk.ac.aber.cs221.aumgroup.gameFrames;
 
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import javax.swing.JLabel;
+
 /**
  * The GameScoreBoard implements the scoreboard which displays the high score of the 10 best players
  * @author the12, jty
@@ -22,8 +31,54 @@ public class GameScoreBoard extends javax.swing.JFrame {
      */
     public GameScoreBoard() {
         initComponents();
+		readScoreFile();
 		main = new GameMainClass();
 		main.setGameScoreBoard(this);
+    }
+	
+	 /**
+     * This methods loads the the highScore.txt file found in the resources folder
+     * it adds labels to the frames based on the number of players details 
+     * stored in the file
+     */
+    private void readScoreFile(){
+        String filePath = "/uk/ac/aber/cs221/aumgroup/resources/highScore.txt";
+		File scoreFile = new File(filePath);
+		//set how the best players details should be displayed
+		jPanel1.setLayout(new GridBagLayout());
+		GridBagConstraints gbConstraints = new GridBagConstraints();
+		//set the spacing between the labels
+		gbConstraints.insets = new Insets(5,40,5,40);
+		//gbConstraints.fill = GridBagConstraints.HORIZONTAL;
+         
+         
+         
+        try {
+            BufferedReader infile = new BufferedReader(new FileReader(scoreFile));
+            String line = infile.readLine().trim();
+            
+            //check whether the file is empty, if not, copy the file's content into an arrayList
+            if (!line.isEmpty()){
+                int numPlayers = Integer.parseInt(line);
+               //data = new String [numPlayers][2];
+                
+                for(int playerNo=0; playerNo<numPlayers; playerNo++) {
+                    //we wanted to use a Jtable to display the scoreboard 
+                    //we tried sevearl times but in vain
+                    // we had no other choice than doing it this 
+                    JLabel playerName = new JLabel(infile.readLine());
+                    playerName.setSize(new Dimension(200,50));
+                    gbConstraints.gridx = 0;
+                    jPanel1.add(playerName,gbConstraints);
+                    JLabel playerScore = new JLabel(infile.readLine());  
+                    playerScore.setSize(new Dimension(200,50));
+                    gbConstraints.gridx=1;
+                    jPanel1.add(playerScore,gbConstraints);   
+                }
+            }
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+        }
     }
 
     /**
@@ -38,8 +93,8 @@ public class GameScoreBoard extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        namelabel = new javax.swing.JLabel();
+        scoreLabel = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -60,43 +115,29 @@ public class GameScoreBoard extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 51));
 
-        jTable2.setBackground(new java.awt.Color(255, 255, 51));
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Player", "Score"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
+        namelabel.setText("Name");
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(jTable2);
+        scoreLabel.setText("Score");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(105, 105, 105)
+                .addComponent(namelabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
+                .addComponent(scoreLabel)
+                .addGap(107, 107, 107))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(namelabel)
+                    .addComponent(scoreLabel))
+                .addContainerGap(267, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -154,8 +195,8 @@ public class GameScoreBoard extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JLabel namelabel;
+    private javax.swing.JLabel scoreLabel;
     // End of variables declaration//GEN-END:variables
 }

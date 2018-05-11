@@ -9,6 +9,7 @@
 package uk.ac.aber.cs221.aumgroup.gameLogic;
 
 import java.awt.Color;
+import java.io.PrintWriter;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 import javax.swing.*;
@@ -18,6 +19,7 @@ import java.util.List;
 import java.util.Random;
 import uk.ac.aber.cs221.aumgroup.gameFrames.GameMainClass;
 import uk.ac.aber.cs221.aumgroup.gameFrames.PlayGame;
+import uk.ac.aber.cs221.aumgroup.gameFrames.PlaySavedGame;
 
 /**
  * Grid - The grid class, which is essentially a panel with custom attributes and methods
@@ -51,6 +53,7 @@ public class Grid extends JPanel {
 	// this list of tiles will make up the word to check for in the dictionary
 	public List<Tile> selectedTiles = new ArrayList<>();
 	private PlayGame game;
+	public Color selectableTilesColor = new Color(241, 194, 50);
 
 	/**
 	 * This is the default constructor for a grid
@@ -210,10 +213,28 @@ public class Grid extends JPanel {
 				if (allTiles[indexVariable].getPos().getRowNumber() == position.getRowNumber()) {
 					if (allTiles[indexVariable].getPos().getColNumber() == position.getColNumber()) {
 						allTiles[indexVariable].setIsTileSelectable(true);
-						allTiles[indexVariable].highlightTile(game.getMain().selectableTilesColor);
+						allTiles[indexVariable].highlightTile(selectableTilesColor);
 					}
 				}
 			}
 		}
+	}
+	
+	/**
+         * This methods writes all the letters in a grid to a file 
+         * @param outfile the file being written
+         */
+	public void saveGrid(PrintWriter outfile){
+		//rowLetters stores all the letter in a row of the letter
+		String rowLetters  = "";
+		//write row by row to the file
+		//pos is the postion of the letter in the row
+		for(int pos=2;pos<9;pos=pos+3){
+		  outfile.println( allTiles[pos-2].getLetter().printLetter() + 
+				  allTiles[pos-1].getLetter().printLetter()+
+				  allTiles[pos].getLetter().printLetter()); 
+
+		}
+
 	}
 }
