@@ -1,0 +1,16 @@
+BEL
+ITF
+SUR
+FGZ
+VFD
+JPG
+FGZ
+VFD
+JPG
+3
+minaa
+30
+theo
+30
+mire
+30
