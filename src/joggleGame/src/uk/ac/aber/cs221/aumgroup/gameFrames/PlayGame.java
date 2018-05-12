@@ -1,5 +1,5 @@
 /*
- * @PlayGame.java 2.3 2018/05/06
+ * @PlayGame.java 2.4 2018/05/08
  *
  * Copyright (c) 2018 Aberystwyth University.
  * All rights reserved.
@@ -30,6 +30,7 @@ import uk.ac.aber.cs221.aumgroup.gameLogic.PositionInGrid;
  * @version 2.1 added javadoc (jty)
  * @version 2.2 added functionality for player score and list of correct words (dkm4)
  * @version 2.3 updated javadoc (dkm4)
+ * @version 2.4 added keyboard functionality (dkm4)
  * @see Grid
  * @see Tile
  */
@@ -104,11 +105,21 @@ public class PlayGame extends javax.swing.JFrame {
         countdownColon = new javax.swing.JLabel();
         countdownSeconds = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setName("Game Play"); // NOI18N
         setResizable(false);
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(45, 221, 255));
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel1MouseEntered(evt);
+            }
+        });
 
         countdownIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uk/ac/aber/cs221/aumgroup/gameIcons/Programming-Watch-icon.png"))); // NOI18N
 
@@ -793,7 +804,7 @@ public class PlayGame extends javax.swing.JFrame {
     private void handleTileAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_handleTileAction
         main.handleTileAction(evt, warningLabel);
     }//GEN-LAST:event_handleTileAction
-
+	
 	/**
 	 * This is the method called when the player clicks on the "clear" button
 	 * It clears the selection of tiles as well as the currently selected word shown
@@ -814,7 +825,6 @@ public class PlayGame extends javax.swing.JFrame {
 	 * @param evt the event being listened for
 	 */
     private void addWordBtn(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addWordBtn
-		main.printCurrentWord();
 		try {
 			if (main.isNotAlreadyInList(correctWordsList)) {
 				if (main.isValidWordThenUpdateScore(scoreLabel)) {
@@ -828,29 +838,45 @@ public class PlayGame extends javax.swing.JFrame {
 		} catch (FileNotFoundException ex) {
 			Logger.getLogger(PlayGame.class.getName()).log(Level.SEVERE, null, ex);
 		}
-		
-		
-		// call this when countdown ends
-//		  closeFrame();
-//        ScoreMenu sM = new ScoreMenu();
-//        //set the game type
-//        sM.setGameType(true);
-//        //pass a copy of the just played game to score menu in case the player wants to save
-//        sM.getCopyPlayedGame(grid1,grid2,grid3,score);
-//        //check if the player score is among the ten best as its is a new game
-//        sM.checking();
-//        //display the gameOver pane
-//        sM.setVisible(true);
     }//GEN-LAST:event_addWordBtn
 
+	/**
+	 * This method is called when the game countdown ends
+	 */
+	public void endGame() {
+		closeFrame();
+        ScoreMenu sM = new ScoreMenu();
+		main.setScoreMenu(sM);
+        //set the game type
+        sM.setGameType(true);
+        //pass a copy of the just played game to score menu in case the player wants to save
+        sM.getCopyPlayedGame(grid1,grid2,grid3,score);
+        //check if the player score is among the ten best as its is a new game
+        sM.checking();
+        //display the gameOver pane
+        sM.setVisible(true);
+	}
+	
     private void changeViewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeViewBtnActionPerformed
-        // TODO add your handling code here:
-		
-		
-    }//GEN-LAST:event_changeViewBtnActionPerformed
 
+    }//GEN-LAST:event_changeViewBtnActionPerformed
 	
-	
+	/**
+	 * This method is to make sure that the panel to which the event listener is in focus
+	 * @param evt mouse event to listen for
+	 */
+    private void jPanel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseEntered
+		requestFocus();
+    }//GEN-LAST:event_jPanel1MouseEntered
+
+	/**
+	 * This method is called when the user types in a character
+	 * @param evt the keyboard event to listen for
+	 */
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        main.tileKeyboardHandle(evt, warningLabel);
+    }//GEN-LAST:event_formKeyPressed
+
 	/**
 	 * This is the getter method for the text field where the currently selected word is shown
 	 * @return JTextField displaying the current word
@@ -899,6 +925,10 @@ public class PlayGame extends javax.swing.JFrame {
 		return score;
 	}
 
+	/**
+	 * This is the getter method for the main class
+	 * @return the main class
+	 */
 	public GameMainClass getMain() {
 		return main;
 	}
@@ -911,14 +941,25 @@ public class PlayGame extends javax.swing.JFrame {
 		this.score = score;
 	}
 	
+	/**
+	 * This is the method used to set the minutes left on the countdown
+	 * @param minutes minutes left on the countdown
+	 */
 	public void setCountdownMinutes(String minutes) {
 		this.countdownMinutes.setText(minutes);
 	}
 	
+	/**
+	 * This is the method used to set the seconds left on the countdown
+	 * @param seconds seconds left on the countdown
+	 */
 	public void setCountdownSeconds(String seconds) {
 		this.countdownSeconds.setText(seconds);
 	}
 	
+	/**
+	 * This method is called when the frame is closed
+	 */
 	public void closeFrame() {
 		WindowEvent winClosingEvent = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
 		Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosingEvent);

@@ -3,11 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gameFrames;
+package uk.ac.aber.cs221.aumgroup.gameFrames;
 
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileReader;
@@ -17,12 +15,8 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.Timer;
-import uk.ac.aber.cs221.aumgroup.gameFrames.GameMainClass;
 import uk.ac.aber.cs221.aumgroup.gameLogic.*;
 
 /**
@@ -128,7 +122,7 @@ public class ScoreMenu extends javax.swing.JFrame {
      * @param filename
      */
     public void setFilename(String filename){
-        loadedFile = new File("resources/savedGames/"+filename);
+        loadedFile = new File("src/uk/ac/aber/cs221/aumgroup//resources/savedGames/" + filename);
     }
 
     /**
@@ -182,7 +176,7 @@ public class ScoreMenu extends javax.swing.JFrame {
      * @throws IOException 
      */
     private void updateScoreBoard() throws IOException{
-         PrintWriter outfile = new PrintWriter(new FileWriter("highScore.txt"));
+         PrintWriter outfile = new PrintWriter(new FileWriter("src/uk/ac/aber/cs221/aumgroup/resources/highscore.txt"));
 
             
             //get number of players in the list
@@ -207,6 +201,7 @@ public class ScoreMenu extends javax.swing.JFrame {
         //close the file
         outfile.close();
     }
+	
     /**
      * This method saves a new game
      * @param filename the directory and the filename in which the new game has to be saved
@@ -243,32 +238,32 @@ public class ScoreMenu extends javax.swing.JFrame {
         Player player;
 
         try{
-            Scanner infile = new Scanner(new FileReader("highScore.txt"));
-             String line = infile.nextLine().trim();
+            Scanner infile = new Scanner(new FileReader("src/uk/ac/aber/cs221/aumgroup/resources/highScore.txt"));
+            String line = infile.nextLine().trim();
 
-             //check whether the file is empty, if not, copy the file's content into an arrayList
-           if (!line.isEmpty()){
-               //get the number of players deatails stored in the file
+            //check whether the file is empty, if not, copy the file's content into an arrayList
+			if (!line.isEmpty()){
+				//get the number of players deatails stored in the file
                 int numplayers = Integer.parseInt(line);
 
-            //get all the best players from the file
-            for(int i=0; i<numplayers; i++) {
-                
-              //read the current player's name from the file
+				//get all the best players from the file
+				for(int i=0; i<numplayers; i++) {
+
+				//read the current player's name from the file
                 String name = infile.nextLine();
                 //read the current player's score from the file
                 int pscore = Integer.parseInt(infile.nextLine());
                 
-               //instantiate that player
+				//instantiate that players
                 player = new Player(name, pscore);
                 
                 //add the player to the list of best players
                 players.add(player);
-            }
-        }
-        //close the file
-        infile.close();
-        }catch(Exception e){
+				}
+			}
+			//close the file
+			infile.close();
+        } catch (Exception e){
             System.err.println(e.getMessage());
         }
     }
@@ -280,18 +275,18 @@ public class ScoreMenu extends javax.swing.JFrame {
      * @throws IOException 
      */
      public void saveLoadGame() throws IOException{
-        PrintWriter outfile = new PrintWriter(new FileWriter(loadedFile));
+		PrintWriter outfile = new PrintWriter(new FileWriter(loadedFile));
 
-        //save the grids
-        pGgrid1.saveGrid(outfile);
-        pGgrid2.saveGrid(outfile);
-        pGgrid2.saveGrid(outfile);
+		//save the grids
+		pGgrid1.saveGrid(outfile);
+		pGgrid2.saveGrid(outfile);
+		pGgrid2.saveGrid(outfile);
 
-        //sort the players according to their score in descending order
-        Collections.sort(players,Collections.reverseOrder());
-        
-        //write the number of previous players to the file
-        outfile.println(players.size());
+		//sort the players according to their score in descending order
+		Collections.sort(players,Collections.reverseOrder());
+
+		//write the number of previous players to the file
+		outfile.println(players.size());
        
         //For each of the player's name and score in players write it to the file
         for(Player p : players){
@@ -333,6 +328,9 @@ public class ScoreMenu extends javax.swing.JFrame {
         return null;
     }
 
+	/**
+	 * This method is called when the frame is closed
+	 */
     public void close(){
         //close the current window
         WindowEvent winClosingEvent = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
@@ -354,12 +352,6 @@ public class ScoreMenu extends javax.swing.JFrame {
         saveGameButton = new javax.swing.JButton();
         loadSavedGameButton = new javax.swing.JButton();
         newGameButton = new javax.swing.JButton();
-        highScorePane = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        highScoreNameLabel = new javax.swing.JLabel();
-        confirmNameButton = new javax.swing.JButton();
-        highScoreNameField = new javax.swing.JTextField();
-        highScoreText = new javax.swing.JLabel();
         saveGamePane = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         saveGameNameField = new javax.swing.JTextField();
@@ -369,8 +361,16 @@ public class ScoreMenu extends javax.swing.JFrame {
         cancelSaveButton = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         saveGameFilenameLabel = new javax.swing.JLabel();
+        highScorePane = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        highScoreNameLabel = new javax.swing.JLabel();
+        confirmNameButton = new javax.swing.JButton();
+        highScoreNameField = new javax.swing.JTextField();
+        highScoreText = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        gameOverPane.setPreferredSize(new java.awt.Dimension(352, 242));
 
         jPanel1.setBackground(new java.awt.Color(45, 221, 255));
 
@@ -410,19 +410,19 @@ public class ScoreMenu extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(127, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(saveGameButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(loadSavedGameButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(exitGameButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(newGameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(184, Short.MAX_VALUE))
+                .addGap(124, 124, 124))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(48, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(41, 41, 41)
                 .addComponent(saveGameButton)
                 .addGap(18, 18, 18)
                 .addComponent(newGameButton)
@@ -430,103 +430,21 @@ public class ScoreMenu extends javax.swing.JFrame {
                 .addComponent(loadSavedGameButton)
                 .addGap(18, 18, 18)
                 .addComponent(exitGameButton)
-                .addGap(19, 19, 19))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout gameOverPaneLayout = new javax.swing.GroupLayout(gameOverPane);
         gameOverPane.setLayout(gameOverPaneLayout);
         gameOverPaneLayout.setHorizontalGroup(
             gameOverPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(gameOverPaneLayout.createSequentialGroup()
-                .addGap(97, 97, 97)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(106, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         gameOverPaneLayout.setVerticalGroup(
             gameOverPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(gameOverPaneLayout.createSequentialGroup()
-                .addGap(86, 86, 86)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(71, Short.MAX_VALUE))
-        );
-
-        jPanel3.setBackground(new java.awt.Color(45, 221, 255));
-
-        highScoreNameLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        highScoreNameLabel.setText("Enter Name");
-
-        confirmNameButton.setText("Ok");
-        confirmNameButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmNameButtonActionPerformed(evt);
-            }
-        });
-
-        highScoreNameField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                highScoreNameFieldActionPerformed(evt);
-            }
-        });
-
-        highScoreText.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        highScoreText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        highScoreText.setText("HIGH SCORE");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(highScoreText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(highScoreNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(highScoreNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(confirmNameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)))
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(highScoreText)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(highScoreNameLabel)
-                .addGap(4, 4, 4)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(highScoreNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(confirmNameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout highScorePaneLayout = new javax.swing.GroupLayout(highScorePane);
-        highScorePane.setLayout(highScorePaneLayout);
-        highScorePaneLayout.setHorizontalGroup(
-            highScorePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(highScorePaneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
-        );
-        highScorePaneLayout.setVerticalGroup(
-            highScorePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(highScorePaneLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jPanel2.setBackground(new java.awt.Color(45, 221, 255));
-
-        saveGameNameField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveGameNameFieldActionPerformed(evt);
-            }
-        });
 
         confirmSaveButton.setText("OK");
         confirmSaveButton.addActionListener(new java.awt.event.ActionListener() {
@@ -562,20 +480,25 @@ public class ScoreMenu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(filenameField)
+                        .addContainerGap())
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(cancelSaveButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(confirmSaveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(saveGameNameField)
+                        .addContainerGap())
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(saveGameNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(saveGameFilenameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(cancelSaveButton)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(confirmSaveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(filenameField, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(saveGameNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(saveGameFilenameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(87, Short.MAX_VALUE)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -601,87 +524,127 @@ public class ScoreMenu extends javax.swing.JFrame {
         saveGamePane.setLayout(saveGamePaneLayout);
         saveGamePaneLayout.setHorizontalGroup(
             saveGamePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(saveGamePaneLayout.createSequentialGroup()
-                .addGap(108, 108, 108)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(117, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         saveGamePaneLayout.setVerticalGroup(
             saveGamePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, saveGamePaneLayout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        highScorePane.setPreferredSize(new java.awt.Dimension(352, 242));
+
+        jPanel3.setBackground(new java.awt.Color(45, 221, 255));
+
+        highScoreNameLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        highScoreNameLabel.setText("Enter Name");
+
+        confirmNameButton.setText("Ok");
+        confirmNameButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmNameButtonActionPerformed(evt);
+            }
+        });
+
+        highScoreText.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        highScoreText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        highScoreText.setText("HIGH SCORE");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(highScoreText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(highScoreNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(highScoreNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(confirmNameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(highScoreText)
+                .addGap(33, 33, 33)
+                .addComponent(highScoreNameLabel)
+                .addGap(4, 4, 4)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(highScoreNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(confirmNameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(99, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout highScorePaneLayout = new javax.swing.GroupLayout(highScorePane);
+        highScorePane.setLayout(highScorePaneLayout);
+        highScorePaneLayout.setHorizontalGroup(
+            highScorePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        highScorePaneLayout.setVerticalGroup(
+            highScorePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jLayeredPane1.setLayer(gameOverPane, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(highScorePane, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(saveGamePane, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(highScorePane, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
         jLayeredPane1Layout.setHorizontalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
-                .addContainerGap(78, Short.MAX_VALUE)
-                .addComponent(gameOverPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(137, 137, 137))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(gameOverPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                    .addGap(268, 268, 268)
+                    .addGap(0, 0, 0)
                     .addComponent(highScorePane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(116, Short.MAX_VALUE)))
+                    .addGap(0, 0, 0)))
             .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                    .addGap(167, 167, 167)
-                    .addComponent(saveGamePane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(125, Short.MAX_VALUE)))
+                    .addGap(0, 0, 0)
+                    .addComponent(saveGamePane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(0, 0, 0)))
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                .addGap(156, 156, 156)
-                .addComponent(gameOverPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(87, Short.MAX_VALUE))
+            .addComponent(gameOverPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                    .addGap(250, 250, 250)
+                    .addGap(0, 0, 0)
                     .addComponent(highScorePane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(163, Short.MAX_VALUE)))
+                    .addGap(0, 0, 0)))
             .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                    .addGap(192, 192, 192)
+                    .addGap(0, 0, 0)
                     .addComponent(saveGamePane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(139, Short.MAX_VALUE)))
+                    .addGap(0, 0, 0)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 109, Short.MAX_VALUE))
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 3, Short.MAX_VALUE))
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void highScoreNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_highScoreNameFieldActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_highScoreNameFieldActionPerformed
-
     private void confirmNameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmNameButtonActionPerformed
-        // TODO add your handling code here:
         String name = null;
-       // highScoreNameLabel.setText("Enter your Name");
+		// highScoreNameLabel.setText("Enter your Name");
         name = characterCheck(highScoreNameField,highScoreNameLabel);
         gamePlayer.setName(name);
 
@@ -726,9 +689,11 @@ public class ScoreMenu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_confirmNameButtonActionPerformed
 
-   
+   /**
+	* This method is called when the user selects to save the game that has been just played
+	* @param evt the click event being listened for
+	*/
     private void confirmSaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmSaveButtonActionPerformed
-        // TODO add your handling code here:
         //name stores the ioutput of the charcter check method
         String name = null;
         saveGameNameLabel.setText("Enter your name");
@@ -750,7 +715,7 @@ public class ScoreMenu extends javax.swing.JFrame {
         //if the input is correct check whether file exixts already
         if((filename != null)&&(gamePlayer.getName()!= null)){
             filename = filename+".txt";
-            File savedFiles = new File("resources/savedGames/"+filename);
+            File savedFiles = new File("src/uk/ac/aber/cs221/aumgroup/resources/savedGames/"+filename);
             try {    
                 fileNotExist = savedFiles.createNewFile();
                 if(!fileNotExist){
@@ -763,7 +728,7 @@ public class ScoreMenu extends javax.swing.JFrame {
        
         //if the filename entered is not 
         if((fileNotExist)){
-             File nameFile = new File("resources/savedGames/"+ filenameField.getText() + ".txt");
+            File nameFile = new File("src/uk/ac/aber/cs221/aumgroup/resources/savedGames/"+ filenameField.getText() + ".txt");
 
             try {
                 saveNewGame(nameFile);
@@ -777,29 +742,38 @@ public class ScoreMenu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_confirmSaveButtonActionPerformed
 
+	/**
+	 * This is the method called when the user decides to not save the game
+	 * @param evt the click event being listened for
+	 */
     private void cancelSaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelSaveButtonActionPerformed
-        // TODO add your handling code here:
         saveGamePane.setVisible(false);
         gameOverPane.setVisible(true);
     }//GEN-LAST:event_cancelSaveButtonActionPerformed
 
+	/**
+	 * This method is called when the user decides to play a new game
+	 * @param evt the click event being listened for
+	 */
     private void newGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameButtonActionPerformed
-        // TODO add your handling code here:
         close();
 		main.showPlayGame();
-//        playGame pG = new playGame();
-//        pG.setVisible(true);
     }//GEN-LAST:event_newGameButtonActionPerformed
 
+	/**
+	 * This method is called when the user decides to load a previously saved game
+	 * @param evt the click event being listened for
+	 */
     private void loadSavedGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadSavedGameButtonActionPerformed
-        // TODO add your handling code here:
         close();
 		main.showSelectGame();
-//        SelectGame sG = new SelectGame();
-//        sG.setVisible(true);
 
     }//GEN-LAST:event_loadSavedGameButtonActionPerformed
 
+	/**
+	 * This method is called when the user decides to save the previously played game
+	 * @param evt the click event being listened for
+	 */
     private void saveGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveGameButtonActionPerformed
         // TODO add your handling code here:
         gameOverPane.setVisible(false);
@@ -817,16 +791,17 @@ public class ScoreMenu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_saveGameButtonActionPerformed
 
+	/**
+	 * This method is called when the user closes the frame
+	 * @param evt the click event being listened for
+	 */
     private void exitGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitGameButtonActionPerformed
-        // TODO add your handling code here:
         close();
     }//GEN-LAST:event_exitGameButtonActionPerformed
 
-    private void saveGameNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveGameNameFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_saveGameNameFieldActionPerformed
-
+	
     /**
+	 * The main class which implements the nimbus and display the form
      * @param args the command line arguments
      */
     public static void main(String args[]) {

@@ -4,12 +4,18 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/Danshil%20K%20Mungur/Documents/Aberystwyth_University/Year_2_Semester_2/CS22120_Software_Engineering/The_Group_Project/GithubBranches/JoggleCubeC/src/joggleGame/src/uk/ac/aber/cs221/aumgroup/gameFrames/SelectGame.java</file>
+            <file>file:/D:/Danshil%20K%20Mungur/Documents/Aberystwyth_University/Year_2_Semester_2/CS22120_Software_Engineering/The_Group_Project/GithubBranches/JoggleCubeC/src/joggleGame/src/uk/ac/aber/cs221/aumgroup/gameFrames/GameScoreBoard.java</file>
             <file>file:/D:/Danshil%20K%20Mungur/Documents/Aberystwyth_University/Year_2_Semester_2/CS22120_Software_Engineering/The_Group_Project/GithubBranches/JoggleCubeC/src/joggleGame/src/uk/ac/aber/cs221/aumgroup/gameLogic/LetterPopulation.java</file>
-            <file>file:/D:/Danshil%20K%20Mungur/Documents/Aberystwyth_University/Year_2_Semester_2/CS22120_Software_Engineering/The_Group_Project/GithubBranches/JoggleCubeC/src/joggleGame/src/uk/ac/aber/cs221/aumgroup/gameFrames/PlaySavedGame.java</file>
+            <file>file:/D:/Danshil%20K%20Mungur/Documents/Aberystwyth_University/Year_2_Semester_2/CS22120_Software_Engineering/The_Group_Project/GithubBranches/JoggleCubeC/src/joggleGame/src/uk/ac/aber/cs221/aumgroup/gameFrames/ScoreMenu.java</file>
             <file>file:/D:/Danshil%20K%20Mungur/Documents/Aberystwyth_University/Year_2_Semester_2/CS22120_Software_Engineering/The_Group_Project/GithubBranches/JoggleCubeC/src/joggleGame/src/uk/ac/aber/cs221/aumgroup/gameFrames/PlayGame.java</file>
-            <file>file:/D:/Danshil%20K%20Mungur/Documents/Aberystwyth_University/Year_2_Semester_2/CS22120_Software_Engineering/The_Group_Project/GithubBranches/JoggleCubeC/src/joggleGame/src/uk/ac/aber/cs221/aumgroup/gameFrames/GameMainClass.java</file>
             <file>file:/D:/Danshil%20K%20Mungur/Documents/Aberystwyth_University/Year_2_Semester_2/CS22120_Software_Engineering/The_Group_Project/GithubBranches/JoggleCubeC/src/joggleGame/src/uk/ac/aber/cs221/aumgroup/gameLogic/Letter.java</file>
             <file>file:/D:/Danshil%20K%20Mungur/Documents/Aberystwyth_University/Year_2_Semester_2/CS22120_Software_Engineering/The_Group_Project/GithubBranches/JoggleCubeC/src/joggleGame/src/uk/ac/aber/cs221/aumgroup/gameLogic/Grid.java</file>
+            <file>file:/D:/Danshil%20K%20Mungur/Documents/Aberystwyth_University/Year_2_Semester_2/CS22120_Software_Engineering/The_Group_Project/GithubBranches/JoggleCubeC/src/joggleGame/src/uk/ac/aber/cs221/aumgroup/gameFrames/gameView1.java</file>
+            <file>file:/D:/Danshil%20K%20Mungur/Documents/Aberystwyth_University/Year_2_Semester_2/CS22120_Software_Engineering/The_Group_Project/GithubBranches/JoggleCubeC/src/joggleGame/src/uk/ac/aber/cs221/aumgroup/gameFrames/PlaySavedGame.java</file>
+            <file>file:/D:/Danshil%20K%20Mungur/Documents/Aberystwyth_University/Year_2_Semester_2/CS22120_Software_Engineering/The_Group_Project/GithubBranches/JoggleCubeC/src/joggleGame/src/uk/ac/aber/cs221/aumgroup/gameFrames/GameMainClass.java</file>
+            <file>file:/D:/Danshil%20K%20Mungur/Documents/Aberystwyth_University/Year_2_Semester_2/CS22120_Software_Engineering/The_Group_Project/GithubBranches/JoggleCubeC/src/joggleGame/src/uk/ac/aber/cs221/aumgroup/gameLogic/Tile.java</file>
+            <file>file:/D:/Danshil%20K%20Mungur/Documents/Aberystwyth_University/Year_2_Semester_2/CS22120_Software_Engineering/The_Group_Project/GithubBranches/JoggleCubeC/src/joggleGame/src/uk/ac/aber/cs221/aumgroup/gameFrames/gameView2.java</file>
+            <file>file:/D:/Danshil%20K%20Mungur/Documents/Aberystwyth_University/Year_2_Semester_2/CS22120_Software_Engineering/The_Group_Project/GithubBranches/JoggleCubeC/src/joggleGame/src/uk/ac/aber/cs221/aumgroup/gameFrames/StartMenu.java</file>
         </group>
     </open-files>
 </project-private>

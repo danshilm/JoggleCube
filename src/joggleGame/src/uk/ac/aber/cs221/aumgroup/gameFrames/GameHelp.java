@@ -16,6 +16,9 @@ package uk.ac.aber.cs221.aumgroup.gameFrames;
  */
 public class GameHelp extends javax.swing.JFrame {
 	
+	/**
+	 * This is the main class that is used
+	 */
 	private GameMainClass main;
 
      /**

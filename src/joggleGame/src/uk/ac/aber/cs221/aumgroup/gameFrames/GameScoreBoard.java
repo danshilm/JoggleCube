@@ -42,17 +42,16 @@ public class GameScoreBoard extends javax.swing.JFrame {
      * stored in the file
      */
     private void readScoreFile(){
-        String filePath = "/uk/ac/aber/cs221/aumgroup/resources/highScore.txt";
+        String filePath = "src/uk/ac/aber/cs221/aumgroup/resources/highscore.txt";
 		File scoreFile = new File(filePath);
+		System.out.println(scoreFile.getAbsolutePath());
 		//set how the best players details should be displayed
 		jPanel1.setLayout(new GridBagLayout());
 		GridBagConstraints gbConstraints = new GridBagConstraints();
 		//set the spacing between the labels
 		gbConstraints.insets = new Insets(5,40,5,40);
 		//gbConstraints.fill = GridBagConstraints.HORIZONTAL;
-         
-         
-         
+        
         try {
             BufferedReader infile = new BufferedReader(new FileReader(scoreFile));
             String line = infile.readLine().trim();

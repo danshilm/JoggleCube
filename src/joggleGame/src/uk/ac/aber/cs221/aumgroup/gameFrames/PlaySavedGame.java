@@ -7,7 +7,6 @@
  */
 package uk.ac.aber.cs221.aumgroup.gameFrames;
 
-import java.awt.*;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -17,7 +16,6 @@ import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import static java.lang.String.valueOf;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -51,19 +49,27 @@ public class PlaySavedGame extends javax.swing.JFrame {
      */
     public PlaySavedGame() {
         initComponents();
-//        populateGrids();
 		main = new GameMainClass();
 		main.setPlaySavedGame(this);	
     }
 	
+	/**
+	 * This method is used to set the name to save the game to
+	 * @param filename name of file
+	 */
 	public void setFilename(String filename){
         savedFile = filename;
     }
 	
+	/**
+	 * This method is used to load the files which have the saved games
+	 * @param filename
+	 * @throws IOException 
+	 */
 	public void loadFile(String filename) 
            throws IOException{
 		
-        Scanner infile =  new Scanner(new FileReader("resources/savedGames/"+filename));
+        Scanner infile =  new Scanner(new FileReader("src/uk/ac/aber/cs221/aumgroup/resources/savedGames/"+filename));
         Player player;
         //set the letters of the grids   
         grid1Tiles = new Tile[] { g1R0C0, g1R0C1, g1R0C2, g1R1C0, g1R1C1, g1R1C2, g1R2C0, g1R2C1, g1R2C2 };
@@ -213,8 +219,18 @@ public class PlaySavedGame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setName("Game Play"); // NOI18N
         setResizable(false);
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(45, 221, 255));
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel1MouseEntered(evt);
+            }
+        });
 
         countdownIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uk/ac/aber/cs221/aumgroup/gameIcons/Programming-Watch-icon.png"))); // NOI18N
 
@@ -783,12 +799,10 @@ public class PlaySavedGame extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(grid1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(changeViewBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(312, 312, 312)
-                                .addComponent(changeViewBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
                                 .addComponent(grid2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(grid3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -928,8 +942,7 @@ public class PlaySavedGame extends javax.swing.JFrame {
 	 * @param evt the event being listened for
 	 */
     private void addWordBtn(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addWordBtn
-        main.printCurrentWord();
-		try {
+        try {
 			if (main.isNotAlreadyInList(correctWordsList)) {
 				if (main.isValidWordThenUpdateScore(scoreLabel)) {
 					main.addCurrentWordToList(correctWordsList);
@@ -944,9 +957,28 @@ public class PlaySavedGame extends javax.swing.JFrame {
 		}
     }//GEN-LAST:event_addWordBtn
 
+	/**
+	 * This method is to make sure that the panel to which the event listener is in focus
+	 * @param evt mouse event to listen for
+	 */
+    private void jPanel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseEntered
+        requestFocus();
+    }//GEN-LAST:event_jPanel1MouseEntered
+
+	/**
+	 * This method is called when the user types in a character
+	 * @param evt the keyboard event to listen for
+	 */
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        main.tileKeyboardHandle(evt, warningLabel);
+    }//GEN-LAST:event_formKeyPressed
+
+	/**
+	 * This method is called when the game countdown ends
+	 */
 	public void endSavedGame() {
 		close();
-        gameFrames.ScoreMenu sM = new gameFrames.ScoreMenu();
+        ScoreMenu sM = new ScoreMenu();
 		main.setScoreMenu(sM);
         //set the game type
         sM.setGameType(false);
@@ -961,6 +993,9 @@ public class PlaySavedGame extends javax.swing.JFrame {
         sM.setVisible(true);
 	}
 	
+	/**
+	 * This method is called when the frame is closed
+	 */
 	public void close(){
         //close the current window
         WindowEvent winClosingEvent = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
@@ -1023,10 +1058,18 @@ public class PlaySavedGame extends javax.swing.JFrame {
 		this.score = score;
 	}
 	
+	/**
+	 * This is the method used to set the minutes left on the countdown
+	 * @param minutes minutes left on the countdown
+	 */
 	public void setCountdownMinutes(String minutes) {
 		this.countdownMinutes.setText(minutes);
 	}
 	
+	/**
+	 * This is the method used to set the seconds left on the countdown
+	 * @param seconds seconds left on the countdown
+	 */
 	public void setCountdownSeconds(String seconds) {
 		this.countdownSeconds.setText(seconds);
 	}

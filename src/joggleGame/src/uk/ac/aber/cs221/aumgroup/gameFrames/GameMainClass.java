@@ -1,5 +1,5 @@
 /*
- * @GameMainClass.java 2.4 2018/05/08
+ * @GameMainClass.java 2.5 2018/05/09
  *
  * Copyright (c) 2018 Aberystwyth University.
  * All rights reserved.
@@ -10,13 +10,13 @@ package uk.ac.aber.cs221.aumgroup.gameFrames;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.FileNotFoundException;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 import static java.lang.Thread.sleep;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import javax.swing.DefaultListModel;
@@ -36,14 +36,12 @@ import uk.ac.aber.cs221.aumgroup.gameLogic.Tile;
  *
  * @author the12, dkm4, jty
  * @version 1.0 initial development (the12)
- * @version 2.0 moved the tile action handle here instead of Grid and added
- * functionality for current word (dkm4)
+ * @version 2.0 moved the tile action handle here instead of Grid and added functionality for current word (dkm4)
  * @version 2.1 added javadoc (jty)
- * @version 2.2 added functionality for player score and list of correct words
- * (dkm4)
+ * @version 2.2 added functionality for player score and list of correct words (dkm4)
  * @version 2.3 added countdown (dkm4, the12)
- * @version 2.4 moved and updated random generation of letters from Grid to here
- * (dkm4)
+ * @version 2.4 moved and updated random generation of letters from Grid to here (dkm4)
+ * @version 2.5 added keyboard functionality (dkm4)
  * @see Grid
  * @see Letter
  * @see GameHelp
@@ -62,33 +60,68 @@ public class GameMainClass {
 	private PlaySavedGame playSavedGame;
 	private GameHelp gameHelp;
 	private GameScoreBoard gameScoreBoard;
-	private gameFrames.ScoreMenu scoreMenu;
+	private ScoreMenu scoreMenu;
 	private SelectGame selectGame;
-	// this is the list of grids through which they will be manipulated
+	/**
+	 * This is the list of grids through which they will be manipulated
+	 */
 	private List<Grid> allGrids;
-	// this will hold the letters making up the current word
+	/**
+	 * This will hold the letters making up the current word
+	 */
 	private List<Letter> currentWord = new ArrayList<>();
+	/**
+	 * This is the list of tiles that are currently selected by the user
+	 */
 	private List<Tile> selectedTiles = new ArrayList<>();
-	// this is the list of words that the user has already entered and are valid words which count towards the player score
+	/**
+	 * This is the list of words that the user has already entered and are valid words which count towards the player score
+	 */
 	private List<String> correctWords = new ArrayList<>();
-	// the score of the player
+	/**
+	 * This is the player score
+	 */
 	private int playerScore;
+	/**
+	 * This is the dictionary class that will be used to check for valid words
+	 */
 	private final Dictionary dict = new Dictionary();
-	// this will hold an instance of the field that shows the current word
+	/**
+	 * This will hold an instance of the field that shows the current word
+	 */
 	private javax.swing.JTextField currentWordField;
 	// these 2 variables represent the amount of minutes and seconds that one game lasts for and is countdown to 0
 	private int countdownMinutes = 3;
 	private int countdownSeconds = 0;
-	// this is the list of all letters that have been generated and will be populated in the grids
+	/**
+	 * This is the list of all letters that have been generated and will be populated in the grids
+	 */
 	private List<Letter> generatedLetters = new ArrayList<>(NO_OF_TILES_IN_BOARD);
-	// constant to represent the number of letters in the whole board
+	/**
+	 * Constant to represent the number of letters in the whole board
+	 */
 	private static final int NO_OF_TILES_IN_BOARD = 27;
+	/**
+	 * Constant to represent the number of letters in one grid
+	 */
 	private static final int NO_OF_TILES_IN_GRID = 9;
+	// these are lists which hold all the tiles for each grid
 	private List<Tile> grid1Tiles = new ArrayList<>(NO_OF_TILES_IN_GRID);
 	private List<Tile> grid2Tiles = new ArrayList<>(NO_OF_TILES_IN_GRID);
 	private List<Tile> grid3Tiles = new ArrayList<>(NO_OF_TILES_IN_GRID);
+	/**
+	 * This is the color that the tiles are highlighted when they have been selected by the user
+	 */
 	public Color selectedTilesColor = new Color(194, 202, 232);
+	/**
+	 * This is the color that the tiles are highlighted when they are valid letters to select from
+	 */
 	public Color selectableTilesColor = new Color(241, 194, 50);
+	/**
+	 * This is the list of characters that are accepted as keyboard input 
+	 */
+	List<Character> alphabets = new ArrayList<>(Arrays.asList('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'));
+	
 
 	/**
 	 * This is the constructor method for the gameMainClass
@@ -110,7 +143,6 @@ public class GameMainClass {
 	 * This method is used so that there is only one instance of the PlayGame
 	 * frame that is used and will be manipulated It also sets the grids so that
 	 * they can be manipulated when required
-	 *
 	 * @param playGame the PlayGame frame used
 	 */
 	public void setPlayGame(PlayGame playGame) {
@@ -120,6 +152,12 @@ public class GameMainClass {
 		this.playerScore = playGame.getScore();
 	}
 
+	/**
+	 * This method is used so that there is only one instance of the PlaySavedGame
+	 * frame that is used and will be manipulated It also sets the grids so that
+	 * they can be manipulated when required
+	 * @param playSavedGame the PlaySavedGame frame used
+	 */
 	public void setPlaySavedGame(PlaySavedGame playSavedGame) {
 		this.playSavedGame = playSavedGame;
 		allGrids = new ArrayList<>(Arrays.asList(playSavedGame.getGrid1(), playSavedGame.getGrid2(), playSavedGame.getGrid3()));
@@ -130,7 +168,6 @@ public class GameMainClass {
 	/**
 	 * This method is used so that there is only one instance of the GameHelp
 	 * frame that is used
-	 *
 	 * @param gameHelp the GameHelp frame used
 	 */
 	public void setGameHelp(GameHelp gameHelp) {
@@ -140,7 +177,6 @@ public class GameMainClass {
 	/**
 	 * This method is used so that there is only one instance of the
 	 * GameScoreBoard that is used
-	 *
 	 * @param gameScoreBoard the GameScoreBoard frame used
 	 */
 	public void setGameScoreBoard(GameScoreBoard gameScoreBoard) {
@@ -150,23 +186,25 @@ public class GameMainClass {
 	/**
 	 * This method is used so that there is only one instance of the ScoreMenu
 	 * frame that is used
-	 *
 	 * @param scoreMenu the ScoreMenu frame used
 	 */
-	public void setScoreMenu(gameFrames.ScoreMenu scoreMenu) {
+	public void setScoreMenu(ScoreMenu scoreMenu) {
 		this.scoreMenu = scoreMenu;
 	}
 
 	/**
 	 * This method is used so that there is only one instance of the SelectGame
 	 * frame that is used
-	 *
 	 * @param selectGame the SelectGame frame used
 	 */
 	public void setSelectGame(SelectGame selectGame) {
 		this.selectGame = selectGame;
 	}
 
+	/**
+	 * This method is the getter method for the list of selected tiles
+	 * @return list of tiles
+	 */
 	public List<Tile> getSelectedTiles() {
 		return selectedTiles;
 	}
@@ -240,7 +278,6 @@ public class GameMainClass {
 	/**
 	 * This is the main method which is first fired up displaying the start menu
 	 * of the game
-	 *
 	 * @param args the command line arguments
 	 */
 	public static void main(String[] args) {
@@ -274,7 +311,6 @@ public class GameMainClass {
 	 * This is the method responsible for checking that any letter randomly
 	 * generated is not exceeding the maximum number of occurrences allowed on
 	 * the board
-	 *
 	 * @param someLetterEnum the randomly generated letter
 	 * @return the number of times that letter has already been generated
 	 */
@@ -307,6 +343,10 @@ public class GameMainClass {
 		}
 	}
 
+	/**
+	 * This method is used to set the list of letters to be populated
+	 * @param listToAdd list to add to the list of letters
+	 */
 	public void addToGeneratedList(List<Letter> listToAdd) {
 		generatedLetters.addAll(listToAdd);
 	}
@@ -429,7 +469,7 @@ public class GameMainClass {
 			clearTileSelection();
 			clearCurrentWord();
 			// display warning for 3 seconds
-			warningLabel.setText("You clicked on an invalid tile!");
+			warningLabel.setText("You clicked on an invalid tile! TRY AGAIN");
 			Timer t = new Timer(3000, new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -584,14 +624,6 @@ public class GameMainClass {
 		}
 	}
 
-	public void printCurrentWord() {
-		System.out.print("The current word is: ");
-		for (Letter letter : currentWord) {
-			System.out.print(letter.printLetter());
-		}
-		System.out.println("");
-	}
-
 	/**
 	 * This method is used to control the time available in one game When the
 	 * timer hits zero, the window is closed and the results are saved The user
@@ -623,7 +655,6 @@ public class GameMainClass {
 						}
 						// end game here
 						playSavedGame.endSavedGame();
-						// TODO:: work here
 					} catch (InterruptedException ex) {
 						System.err.println(ex.getMessage());
 					}
@@ -654,8 +685,7 @@ public class GameMainClass {
 							countdownSeconds = 59;
 						}
 						// end game here
-						// TODO:: work here
-
+						playGame.endGame();
 					} catch (InterruptedException ex) {
 						System.err.println(ex.getMessage());
 					}
@@ -665,6 +695,12 @@ public class GameMainClass {
 		}
 	}
 
+	/**
+	 * This method is used to highlight the valid tiles in the other grids when a tile is clicked on
+	 * @param tileInOriginGrid tile clicked on
+	 * @param selectedTiles list of tiles currently selected
+	 * @param ownerGridOfTile grid where the tile clicked is 
+	 */
 	public void setSelectableInNeighbourGrids(Tile tileInOriginGrid, List<Tile> selectedTiles, Grid ownerGridOfTile) {
 		List<Grid> neighbourGrids = getNeighbourGrids(ownerGridOfTile);
 		for (Grid eachGrid : neighbourGrids) {
@@ -672,6 +708,11 @@ public class GameMainClass {
 		}
 	}
 
+	/**
+	 * This method checks which tiles are valid neighbors and returns a lis tof those
+	 * @param ownerGrid grid where the tile was clicked on
+	 * @return list of neighbor tiles
+	 */
 	public List<Grid> getNeighbourGrids(Grid ownerGrid) {
 		List<Grid> neighbourGrids = new ArrayList<>();
 		switch (ownerGrid.getGridNo()) {
@@ -692,11 +733,123 @@ public class GameMainClass {
 		return neighbourGrids;
 	}
 
+	/**
+	 * This method checks whether the game being played is a new one or one that has been loaded
+	 * @return whether it is a new or saved game
+	 */
 	public Boolean newOrSavedGameCheck() {
 		if (playSavedGame == null) {
 			return true;
 		} else {
 			return false;
 		}
+	}
+	
+	/**
+	 * This method is called when the user presses a key on the keyboard
+	 * It goes through the list of all letters that are on the board and highlights the letter that corresponds as well as the valid neighbor tiles
+	 * in the grid that the tile is and as well as the other valid neighboring grids
+	 * @param evt the keyboard event being listened for
+	 * @param warningLabel the label where to show a warning if its not a letter that was pressed
+	 */
+	public void tileKeyboardHandle(KeyEvent evt, JLabel warningLabel) {
+		Tile typedTile = null;
+		if (alphabets.indexOf(evt.getKeyChar()) < 0) {
+			warningLabel.setText("Not a valid letter, TRY AGAIN");
+			Timer t = new Timer(3000, new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					warningLabel.setText(null);
+				}
+			});
+			t.setRepeats(false);
+			t.start();
+		} else {
+			String letterPressed = Character.toString(evt.getKeyChar()).toUpperCase();
+			if ("Q".equals(letterPressed)) {
+				letterPressed += "U";
+			}
+			for (Grid thisGrid: allGrids) {
+				for (Tile oneTile: thisGrid.getAllTiles()) {
+					if (oneTile.getLetter().printLetter().toUpperCase().equals(letterPressed)) {
+						typedTile = oneTile;
+					}
+				}
+			}
+			
+			if (typedTile.getIsTileSelectable()) {
+				int row = typedTile.getPos().getRowNumber();
+				int col = typedTile.getPos().getColNumber();
+				Grid ownerGrid = typedTile.getOwnerGrid();
+
+				for (Grid oneGrid : allGrids) {
+					for (Tile oneTile : oneGrid.getAllTiles()) {
+						oneTile.setIsTileSelectable(false);
+						oneTile.highlightTile(Color.WHITE);
+					}
+				}
+				for (Tile selectedTile : selectedTiles) {
+					selectedTile.highlightTile(selectedTilesColor);
+				}
+				typedTile.setSelected(true);
+				selectedTiles.add(typedTile);
+				updateCurrentWord(typedTile);
+				// this is to set all the neighbours selectable to true
+				// so that the player can select another tile after
+
+				// new and improved algo to set neighbours to selectable to true
+				int row_limit = Grid.NO_OF_ROWS_IN_GRID - 1;
+				if (row_limit > 0) {
+					int column_limit = Grid.NO_OF_COLUMNS_IN_GRID - 1;
+					for (int x = max(0, row - 1); x <= min(row + 1, row_limit); x++) {
+						for (int y = max(0, col - 1); y <= min(col + 1, column_limit); y++) {
+							if (x != row || y != col) {
+								setSelectableIfNotAlreadySelected(new PositionInGrid(x, y), ownerGrid);
+							}
+						}
+					}
+				}
+				setSelectableInNeighbourGrids(typedTile, selectedTiles, ownerGrid);
+
+			} else {
+				// when user clicks on tile which is not selectable
+				// clear tiles selected in all grids
+				// and clear current word field
+				clearTileSelection();
+				clearCurrentWord();
+				// display warning for 3 seconds
+				warningLabel.setText("You typed a non-selectable letter! TRY AGAIN");
+				Timer t = new Timer(3000, new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						warningLabel.setText(null);
+					}
+				});
+				t.setRepeats(false);
+				t.start();
+			}
+		}
+	}
+	
+	/**
+	 * This method is used to update the currently shown word when a key has been pressed
+	 * @param typedTile the tile that has been pressed
+	 */
+	public void updateCurrentWord(Tile typedTile) {
+		PositionInGrid positionOfClickedTile = typedTile.getPos();
+		Grid ownerGrid = typedTile.getOwnerGrid();
+
+		for (int i = 0; i < 9; i++) {
+			if (ownerGrid.getAllTiles()[i].getPos().getRowNumber() == positionOfClickedTile.getRowNumber() && ownerGrid.getAllTiles()[i].getPos().getColNumber() == positionOfClickedTile.getColNumber()) {
+				currentWord.add(ownerGrid.getAllTiles()[i].getLetter());
+				break;
+			}
+		}
+
+		String currentWordString = "";
+		for (int indexVariable = 0; indexVariable < currentWord.size(); indexVariable++) {
+			currentWordString += currentWord.get(indexVariable).printLetter().toUpperCase();
+		}
+		currentWordField.setText(currentWordString);
 	}
 }
