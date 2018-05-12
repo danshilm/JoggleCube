@@ -35,7 +35,7 @@ public class Dictionary {
 	public void readFile() throws FileNotFoundException {
 		int count = 0;
 
-		Scanner infile = new Scanner(new FileReader("resources/wordlist.txt"));
+		Scanner infile = new Scanner(new FileReader("src/uk/ac/aber/cs221/aumgroup/resources/wordlist.txt"));
 		while (infile.hasNext()) {
 			words[count] = infile.nextLine().toLowerCase();
 			count++;
